@@ -1,5 +1,5 @@
 cask "speechify-voice-ai" do
-  version "3.8.0"
+  version "3.14.0"
   sha256 :no_check
 
   url "https://storage.googleapis.com/speechifymobile.appspot.com/macAgentSparkle/SpeechifyVoiceAssistant.dmg",
@@ -22,6 +22,7 @@ cask "speechify-voice-ai" do
     "~/Library/Application Support/com.cliffweitzman.speechifymacagent",
     "~/Library/Caches/com.cliffweitzman.speechifymacagent",
     "~/Library/Caches/com.crashlytics.data/com.cliffweitzman.speechifymacagent",
+    "~/Library/HTTPStorages/com.cliffweitzman.speechifymacagent",
     "~/Library/Preferences/com.cliffweitzman.speechifymacagent.plist",
   ]
 end

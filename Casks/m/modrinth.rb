@@ -1,6 +1,6 @@
 cask "modrinth" do
-  version "0.15.10"
-  sha256 "7d78244a095e0a37a4bf19a32c1416ea814cae864a41d12792f3ca3758112e64"
+  version "0.18.2"
+  sha256 "25c8838f7d2d91c9625ed90039ae83be6ca5ea4bf12c6bff4db78fac8c243a0e"
 
   url "https://launcher-files.modrinth.com/versions/#{version}/macos/Modrinth%20App_#{version}_universal.dmg"
   name "Modrinth App"
@@ -23,8 +23,12 @@ cask "modrinth" do
 
   zap trash: [
     "~/Library/Application Support/com.modrinth.theseus",
+    "~/Library/Application Support/ModrinthApp",
     "~/Library/Caches/com.modrinth.theseus",
+    "~/Library/Caches/ModrinthApp",
+    "~/Library/HTTPStorages/ModrinthApp.binarycookies",
     "~/Library/Saved Application State/com.modrinth.theseus.savedState",
     "~/Library/WebKit/com.modrinth.theseus",
+    "~/Library/WebKit/ModrinthApp",
   ]
 end

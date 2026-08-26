@@ -1,9 +1,9 @@
 cask "freelens@nightly" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.10.4-0-nightly-2026-07-12"
-  sha256 arm:   "33f4fe7cbcf63e7df88bab2d1550e6cf2c7fc7e3cb6560460e96b786a196eef6",
-         intel: "6490f208de47659cc3bf406f5c87dabdd6e9928dafb38876f48131561147fff4"
+  version "2.0.0-0-nightly-2026-08-26"
+  sha256 arm:   "85ad7b7ae6813c6e6c92870eb443d9a6c3b18e39b022e4792cf93ee3408721aa",
+         intel: "3c8071556c230ad4ecb4dab871b68deda902a128bcc0057ad4e3c6c0f682d33a"
 
   url "https://github.com/freelensapp/freelens-nightly-builds/releases/download/v#{version}/Freelens-#{version}-macos-#{arch}.dmg",
       verified: "github.com/freelensapp/freelens-nightly-builds/"
@@ -17,7 +17,11 @@ cask "freelens@nightly" do
   app "Freelens.app"
 
   zap trash: [
-    "~/Library/Application Support/Freelens",
-    "~/Library/Logs/Freelens",
-  ]
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/app.freelens.freelens.sfl*",
+        "~/Library/Application Support/Freelens",
+        "~/Library/Logs/Freelens",
+        "~/Library/Preferences/app.freelens.Freelens.plist",
+        "~/Library/Saved Application State/app.freelens.Freelens.savedState",
+      ],
+      rmdir: "~/.freelens"
 end

@@ -1,6 +1,6 @@
 cask "hstracker" do
-  version "3.6.0"
-  sha256 "07a078ada9291f204c132f88cd256f320dbb44ae05c11d4bd25144363434f162"
+  version "3.6.5"
+  sha256 "5e1e4e7c332b94a3d6e2899955423d707dd47ee43ce05021c923b0aa48211d4c"
 
   url "https://github.com/HearthSim/HSTracker/releases/download/#{version}/HSTracker.app.zip",
       verified: "github.com/HearthSim/HSTracker/"
@@ -19,6 +19,8 @@ cask "hstracker" do
   depends_on :macos
 
   app "HSTracker.app"
+
+  uninstall quit: "net.hearthsim.hstracker"
 
   zap trash: [
     "~/Library/Application Support/HSTracker",

@@ -1,6 +1,6 @@
 cask "parallels" do
-  version "26.4.0-57513"
-  sha256 "424ba5fa1661d09ee0f3e0fe4fb44b99faed2b68bdd3ec25b2b7e6e6d35a62e8"
+  version "26.4.1-57516"
+  sha256 "f32a4ff2bf5d522392a9d28c133b0c768dd09b757634f33f301c7cb21d243b1f"
 
   url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsDesktop-#{version}.dmg"
   name "Parallels Desktop"
@@ -33,21 +33,17 @@ cask "parallels" do
 
   app "Parallels Desktop.app"
 
-  preflight do
-    system_command "chflags",
-                   args: ["nohidden", "#{staged_path}/Parallels Desktop.app"]
-    system_command "xattr",
-                   args: ["-d", "com.apple.FinderInfo", "#{staged_path}/Parallels Desktop.app"]
+  preflight_steps do
+    run "chflags", args: ["nohidden", "{{staged_path}}/Parallels Desktop.app"]
+    run "xattr", args: ["-d", "com.apple.FinderInfo", "{{staged_path}}/Parallels Desktop.app"]
   end
 
-  postflight do
-    system_command "#{appdir}/Parallels Desktop.app/Contents/MacOS/inittool",
-                   args: ["init"],
-                   sudo: true
+  postflight_steps do
+    run "Parallels Desktop.app/Contents/MacOS/inittool", args: ["init"], base: :appdir, sudo: true
   end
 
-  uninstall_preflight do
-    set_ownership "#{appdir}/Parallels Desktop.app"
+  uninstall_preflight_steps do
+    set_ownership "Parallels Desktop.app", base: :appdir
   end
 
   uninstall signal: ["TERM", "com.parallels.desktop.console"],

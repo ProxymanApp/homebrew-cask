@@ -14,7 +14,17 @@ cask "alex313031-thorium" do
   livecheck do
     url :url
     regex(/^(M?\d+(?:\.\d+)+)$/i)
-    strategy :github_latest
+    strategy :github_releases do |json, regex|
+      json.map do |release|
+        next if release["draft"] || release["prerelease"]
+
+        match = release["tag_name"]&.match(regex)
+        # Ignore releases that have `Beta` in their names
+        next if match.blank? || release["name"]&.match?(/beta/i)
+
+        match[1]
+      end
+    end
   end
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
@@ -22,16 +32,8 @@ cask "alex313031-thorium" do
   depends_on macos: :big_sur
 
   app "Thorium.app", target: "Thorium Browser.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/thorium.wrapper.sh"
-  binary shimscript, target: "thorium"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/Thorium Browser.app/Contents/MacOS/Thorium' "$@"
-    EOS
-  end
+  command_wrapper "thorium",
+                  executable: "#{appdir}/Thorium Browser.app/Contents/MacOS/Thorium"
 
   zap trash: [
     "~/Library/Application Support/Thorium",

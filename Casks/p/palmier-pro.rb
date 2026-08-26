@@ -1,6 +1,6 @@
 cask "palmier-pro" do
-  version "0.6.5"
-  sha256 "5d601143e6938e6e9631b96d013120b54dd9f87ed671243e60d721346768bfae"
+  version "0.7.6"
+  sha256 "b907d76cad355114daf0083fda418bd92330b67c8d04348cf5ae6e6a8cf00417"
 
   url "https://github.com/palmier-io/palmier-pro/releases/download/v#{version}/PalmierPro.dmg",
       verified: "github.com/palmier-io/palmier-pro/"
@@ -14,6 +14,7 @@ cask "palmier-pro" do
   app "PalmierPro.app"
 
   zap trash: [
+    "~/Library/Application Support/io.palmier.pro",
     "~/Library/Application Support/PalmierPro",
     "~/Library/Caches/io.palmier.pro",
     "~/Library/Caches/PalmierPro",

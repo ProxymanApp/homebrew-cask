@@ -1,9 +1,9 @@
 cask "syncovery" do
   arch arm: "-Apple"
 
-  version "11.15.15"
-  sha256 arm:   "d4ef0b5947dbe4545fdc8f65beb9e09b68b41e63f83e9c0f8761becfef5cfcbb",
-         intel: "ac63343a6cc0bc1325678cc207b03577b0b1722a1475e4700a8b99b9eb02970e"
+  version "12.5.1"
+  sha256 arm:   "3bf888150b2b959ff230ccc5214486b79a8f81f87ac5af01cffcb61ddc7ef88a",
+         intel: "35052bca60cc6d47679b4e859c3d87116c0e8d6547dbe4632290e0fe3cb41df4"
 
   url "https://www.syncovery.com/release/SyncoveryMac#{version}#{arch}.dmg"
   name "Syncovery"

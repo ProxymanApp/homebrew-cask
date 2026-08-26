@@ -1,9 +1,9 @@
 cask "nimbalyst" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.68.1"
-  sha256 arm:   "dcb9dea634482a04229b6118ae35bbef23336f7374a9d252e2ba8d788f9f0615",
-         intel: "57c344fbb069f3f33bfefd61179f51e704301e0721bb46d43bae8a97df381333"
+  version "0.74.4"
+  sha256 arm:   "b4d1b60d2aaadafb91b6f08086b2356289a3f71b64f0381f9b2ade2768768580",
+         intel: "1eeb651d0f271350fde97356f9817202c4e10ddcf7b29be14e328200c43b7cec"
 
   url "https://github.com/Nimbalyst/nimbalyst/releases/download/v#{version}/Nimbalyst-macOS-#{arch}.dmg",
       verified: "github.com/Nimbalyst/nimbalyst/"
@@ -20,5 +20,9 @@ cask "nimbalyst" do
 
   app "Nimbalyst.app"
 
-  zap trash: "~/Library/Application Support/@nimbalyst"
+  zap trash: [
+    "~/Library/Application Support/@nimbalyst",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.nimbalyst.electron.sfl*",
+    "~/Library/Preferences/com.nimbalyst.electron.plist",
+  ]
 end

@@ -1,33 +1,18 @@
 cask "zen" do
   arch arm: "aarch64", intel: "x86_64"
-  os macos: "macos", linux: "linux"
+  os macos: ".macos-universal", linux: "-#{arch}"
+  livecheck_os = on_system_conditional macos: "Darwin", linux: "Linux"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
 
-  version "1.21.6b"
-
-  filename = on_system_conditional macos: "zen.macos-universal.dmg", linux: "zen-#{arch}.AppImage"
-
-  url "https://github.com/zen-browser/desktop/releases/download/#{version}/#{filename}",
-      verified: "github.com/zen-browser/desktop/"
-  name "Zen Browser"
-  desc "Gecko based web browser"
-  homepage "https://zen-browser.app/"
-
-  livecheck do
-    url "https://updates.zen-browser.app/updates/browser/Darwin_aarch64-gcc3/release/update.xml"
-    strategy :xml do |xml|
-      xml.get_elements("//update").map { |item| item.attributes["appVersion"] }
-    end
-  end
-
-  auto_updates true
+  version "1.21.15b"
 
   on_macos do
-    sha256 "a15523566dd1490bc46a7ff60ecc1d0560f764d6869b4e5ff2ccee32bf9562ca"
+    sha256 "0e8e9f3a36d5f34b5335631e495414f46f8d8fb78e7ba5a732f992305de8e047"
 
     conflicts_with cask: "zen-privacy"
 
     app "Zen.app"
-    binary "#{appdir}/Zen.app/Contents/MacOS/zen"
+    command_wrapper "zen", executable: "#{appdir}/Zen.app/Contents/MacOS/zen"
 
     uninstall quit: "app.zen-browser.zen"
 
@@ -43,11 +28,24 @@ cask "zen" do
         ],
         rmdir: "~/Library/Caches/Mozilla"
   end
-
   on_linux do
-    sha256 arm64_linux:  "a7dea75684b89056720703e94e7fcccd5c48614a3c01315598bb824b6e43906e",
-           x86_64_linux: "22b0e2de57d28e0a01e1e6e2516762f10699289f1b9259eb85f5d2db517d8fb3"
+    sha256 arm64_linux:  "981e186587110cfd09510df6880ed434b53a47db9b9b294cdd204892fd850944",
+           x86_64_linux: "349704871522e0085f3b505d629009490eefb3f06ee67a87ea106dcb1395ccfe"
 
-    app_image filename, target: "Zen.AppImage"
+    app_image "zen-#{arch}.AppImage", target: "Zen.AppImage"
   end
+
+  url "https://github.com/zen-browser/desktop/releases/download/#{version}/zen#{os}.#{url_end}"
+  name "Zen Browser"
+  desc "Gecko based web browser"
+  homepage "https://zen-browser.app/"
+
+  livecheck do
+    url "https://updates.zen-browser.app/updates/browser/#{livecheck_os}_#{arch}-gcc3/release/update.xml"
+    strategy :xml do |xml|
+      xml.get_elements("//update").map { |item| item.attributes["appVersion"] }
+    end
+  end
+
+  auto_updates true
 end

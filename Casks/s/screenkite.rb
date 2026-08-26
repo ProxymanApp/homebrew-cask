@@ -1,6 +1,6 @@
 cask "screenkite" do
-  version "1.10.4,513"
-  sha256 "2f38e87284ba0bf4a11630d51369c48db89f5a7d972c70003e0a9337fa55ba3e"
+  version "1.17.1,649"
+  sha256 "0fd675651a7531b7d6084d6233c310b332f64fd546a66c1185202f9325b191ba"
 
   url "https://downloads.screenkite.com/mac-releases/ScreenKite-#{version.csv.second}.zip"
   name "ScreenKite"
@@ -14,13 +14,14 @@ cask "screenkite" do
 
   auto_updates true
   depends_on arch: :arm64
-  depends_on macos: :sonoma
+  depends_on macos: :sequoia
 
   app "ScreenKite.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.screenkite.mac.ScreenKitePreviewExtension",
     "~/Library/Application Scripts/com.screenkite.mac.ScreenKiteThumbnailExtension",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.screenkite.mac.sfl*",
     "~/Library/Application Support/com.screenkite.mac",
     "~/Library/Application Support/ScreenKite",
     "~/Library/Caches/com.crashlytics.data/com.screenkite.mac",
@@ -31,6 +32,7 @@ cask "screenkite" do
     "~/Library/HTTPStorages/com.screenkite.mac.binarycookies",
     "~/Library/Logs/ScreenKite",
     "~/Library/Preferences/com.screenkite.mac.plist",
+    "~/Library/Preferences/group.com.screenkite.mac.firebase.plist",
     "~/Library/Saved Application State/com.screenkite.mac.savedState",
     "~/Library/WebKit/com.screenkite.mac",
   ]

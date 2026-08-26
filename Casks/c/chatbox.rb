@@ -1,9 +1,9 @@
 cask "chatbox" do
   arch arm: "-arm64"
 
-  version "1.21.1"
-  sha256 arm:   "fb5ea28c2ede205026b8b6e0ae5a2bc93a0ee9247dd021fccc73269c8c5fcd08",
-         intel: "119ed4c180a92accb9425caab16fd25d91da01c36d3125477711fbd30f1ed21c"
+  version "1.22.6"
+  sha256 arm:   "b636bbcdb9a8d8bde6328aebea2a278b9065bae99ed196a42b01954c9545de4b",
+         intel: "625f7fc5b238a68291698e05cc2abcd5ce325283f8ea26aab1ac38a094ce1f35"
 
   url "https://download.chatboxai.app/releases/Chatbox-#{version}#{arch}.dmg"
   name "Chatbox"
@@ -23,8 +23,10 @@ cask "chatbox" do
   uninstall quit: "xyz.chatboxapp.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/xyz.chatboxapp.app.sfl*",
     "~/Library/Application Support/xyz.chatboxapp.app",
     "~/Library/Caches/xyz.chatboxapp.app",
+    "~/Library/Logs/xyz.chatboxapp.app",
     "~/Library/Preferences/xyz.chatboxapp.app.plist",
     "~/Library/Saved Application State/xyz.chatboxapp.app.savedState",
     "~/Library/WebKit/xyz.chatboxapp.app",

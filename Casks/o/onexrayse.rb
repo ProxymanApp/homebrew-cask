@@ -1,6 +1,6 @@
 cask "onexrayse" do
-  version "26.7.2"
-  sha256 "76f0b0629190d06a9ec91ff06b8925b537b05308835c44ce668a4dfcc987e7ed"
+  version "26.8.4"
+  sha256 "c14ec286517dc7a4f2d6bbd9ec5aa846a79d032e3edb5b6de7e1606039f55969"
 
   url "https://github.com/OneXray/OneXray/releases/download/v#{version}/OneXray-macos-universal.zip",
       verified: "github.com/OneXray/OneXray/"
@@ -8,7 +8,7 @@ cask "onexrayse" do
   desc "Cross-platform Xray-core client"
   homepage "https://onexray.com/"
 
-  depends_on macos: :monterey
+  depends_on macos: :ventura
 
   app "OneXraySE.app"
 

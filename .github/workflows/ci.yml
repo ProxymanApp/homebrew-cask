@@ -44,13 +44,13 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+        uses: Homebrew/actions/setup-homebrew@8f3d1ec8a696b3b9d9a6c3696b6c73033cab69e4 # 2026.08.14.1
         with:
           core: false
           cask: true
 
       - name: Check out Pull Request
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -87,10 +87,11 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+        uses: Homebrew/actions/setup-homebrew@8f3d1ec8a696b3b9d9a6c3696b6c73033cab69e4 # 2026.08.14.1
         with:
           core: true
           cask: true
+          stable: ${{ matrix.stable || false }}
 
       - name: Enable debug mode
         run: |
@@ -99,13 +100,13 @@ jobs:
         if: runner.debug
 
       - name: Check out Pull Request
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
 
       - name: Clean up CI machine
-        if: runner.os == 'macOS'
+        if: runner.os == 'macOS' && !matrix.stable
         run: brew test-bot --cleanup --only-cleanup-before
 
       - name: Cache Homebrew Gems
@@ -117,19 +118,19 @@ jobs:
           restore-keys: ${{ matrix.runner }}-rubygems-
 
       - name: Cache style cache
-        if: runner.os == 'macOS'
+        if: runner.os == 'macOS' && !matrix.stable
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/Library/Caches/Homebrew/style
-          key: macos-style-cache-${{ github.sha }}
-          restore-keys: macos-style-cache-
+          key: macos-style-cache-${{ matrix.stable && 'stable-' || 'main-' }}${{ github.sha }}
+          restore-keys: macos-style-cache-${{ matrix.stable && 'stable-' || 'main-' }}
 
       - name: Run brew config
         run: brew config
 
       - name: Run brew test-bot --only-tap-syntax
         id: tap-syntax
-        run: brew test-bot --tap '${{ matrix.tap }}' --only-tap-syntax
+        run: brew test-bot --tap '${{ matrix.tap }}' --only-tap-syntax ${{ matrix.stable && '--stable' || '' }}
         if: always() && !matrix.cask
 
       - name: Run brew fetch --cask ${{ matrix.cask.token }}
@@ -155,12 +156,14 @@ jobs:
 
       - name: Gather cask information
         id: info
+        env:
+          CASK_PATH: ${{ matrix.cask.path }}
         run: |
-          brew ruby <<'EOF'
+          brew ruby -- - "$CASK_PATH" <<'EOF'
             require 'cask/cask_loader'
             require 'cask/installer'
 
-            cask = Cask::CaskLoader.load('${{ matrix.cask.path }}')
+            cask = Cask::CaskLoader.load(ARGV.fetch(0))
 
             manual_installer = cask.artifacts.any? do |artifact|
               if defined?(artifact.manual_install)
@@ -237,6 +240,18 @@ jobs:
           fromJSON(steps.info.outputs.macos_requirement_satisfied) &&
           !matrix.skip_install
         timeout-minutes: 30
+
+      - name: Check for missing zap paths
+        run: |
+          brew ruby -r "$(brew --repository homebrew/cask)/cmd/lib/zap_check.rb" <<'EOF'
+            ZapCheck.run('${{ matrix.cask.path }}')
+          EOF
+        if: >
+          always() &&
+          steps.install.outcome == 'success' &&
+          runner.os == 'macOS'
+        continue-on-error: true
+        timeout-minutes: 10
 
       - name: Run brew uninstall --cask ${{ matrix.cask.token }}
         run: brew uninstall --cask '${{ matrix.cask.path }}'

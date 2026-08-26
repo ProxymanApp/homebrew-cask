@@ -1,9 +1,9 @@
 cask "flyenv" do
   arch arm: "-arm64"
 
-  version "4.16.2"
-  sha256 arm:   "492a3842a489493ffa5aef4db25026c4d7459a85822b8c0f6fea3bf4f87705df",
-         intel: "b529a20b1f4118e64182c2c90c323726602a9d595f905fba5d52347586a8dadb"
+  version "4.18.1"
+  sha256 arm:   "c366ceda414c592297e95b299bd68c00421ca24f7064ca8184b53cc39679f35f",
+         intel: "6c92991912c437d5529ef8dc659199a5f143994303ae2a405b9942b580e2b63a"
 
   url "https://github.com/xpf0000/FlyEnv/releases/download/v#{version}/FlyEnv-#{version}#{arch}-mac.zip",
       verified: "github.com/xpf0000/FlyEnv/"
@@ -22,7 +22,11 @@ cask "flyenv" do
   app "FlyEnv.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/phpstudy.xpfme.com.sfl*",
+    "~/Library/Application Support/FlyEnv",
     "~/Library/Application Support/PhpWebStudy",
+    "~/Library/FlyEnv",
+    "~/Library/Logs/FlyEnv",
     "~/Library/Logs/PhpWebStudy",
     "~/Library/PhpWebStudy",
     "~/Library/Preferences/phpstudy.xpfme.com.plist",

@@ -1,9 +1,9 @@
 cask "devin-desktop@next" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.4.1027+next.0d4bf12ed4,0d4bf12ed4a7597cb8ae9016fe8474468aad98a2"
-  sha256 arm:   "1e1f5e7b8ee99b5b5b42fbdced34141f5fd15269115574190cb219c17a6e03ae",
-         intel: "13f5241842cc6fbf52d17856a93680dde34b596b9bf015e7e4fa22db4d659ffd"
+  version "3.8.1020+next.2d9020110a,2d9020110aa91587b3c3b0fcf7d1faaf601fc7b8"
+  sha256 arm:   "f6bc7622b8d00b804543f87883d14ebb802a796c34758869edb844f78f31ac81",
+         intel: "303730fb48e8964e8acb9565bdd433b0c3ae74c57fee9cd4621e13c67a3299f6"
 
   url "https://windsurf-stable.codeiumdata.com/darwin-#{arch}-dmg/next/#{version.csv.second}/Devin-darwin-#{arch}-#{version.csv.first}.dmg",
       verified: "windsurf-stable.codeiumdata.com/"
@@ -34,6 +34,7 @@ cask "devin-desktop@next" do
   zap trash: [
         "~/.devin-next",
         "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.exafunction.windsurfnext.sfl*",
+        "~/Library/Application Support/Devin - Next",
         "~/Library/Application Support/Devin Next",
         "~/Library/Caches/com.exafunction.windsurfNext",
         "~/Library/Caches/com.exafunction.windsurfNext.ShipIt",

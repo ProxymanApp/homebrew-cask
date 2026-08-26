@@ -1,6 +1,6 @@
 cask "gdevelop" do
-  version "5.6.273"
-  sha256 "f3aa271bb6a96278db5e2719073ca6dcce2de09116ab70c3cd39f6febc4b68fa"
+  version "5.6.280"
+  sha256 "ae07b5fe765f9eb00409286aade6f563861e9766b1a1493bd1ab9977e8526300"
 
   url "https://github.com/4ian/GDevelop/releases/download/v#{version}/GDevelop-#{version.major}-#{version}-universal.dmg",
       verified: "github.com/4ian/GDevelop/"
@@ -18,6 +18,7 @@ cask "gdevelop" do
   app "GDevelop #{version.major}.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.gdevelop-app.ide.sfl*",
     "~/Library/Application Support/GDevelop #{version.major}",
     "~/Library/Logs/GDevelop #{version.major}",
     "~/Library/Preferences/com.gdevelop-app.ide.plist",

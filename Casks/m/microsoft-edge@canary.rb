@@ -1,11 +1,11 @@
 cask "microsoft-edge@canary" do
-  version "152.0.4148.0,a0e55855-02e2-4078-80f1-db290820284d"
-  sha256 "01dc9c386ba5090d802bae91b2a0dbaab493d76bb8d7dbd7b4de837f45e03747"
+  version "154.0.4238.0,75a2e43e-a679-4cd0-992a-0a947a4e3ce2"
+  sha256 "76403ad2e76dffb1cc7b66f68526f87f07741813fea37140a6c4206f9256c88e"
 
   url "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/#{version.csv.second}/MicrosoftEdgeCanary-#{version.csv.first}.dmg"
   name "Microsoft Edge Canary"
   desc "Multi-platform web browser"
-  homepage "https://www.microsoft.com/en-us/edge/download/insider"
+  homepage "https://explore.microsoft.com/en-us/edge/download/insider"
 
   livecheck do
     url "https://go.microsoft.com/fwlink/?linkid=2124603"
@@ -23,7 +23,8 @@ cask "microsoft-edge@canary" do
 
   app "Microsoft Edge Canary.app"
 
-  uninstall launchctl: "com.microsoft.EdgeUpdater.wake"
+  uninstall launchctl: "com.microsoft.EdgeUpdater.wake",
+            quit:      "com.microsoft.edgemac.Canary"
 
   zap trash: [
         "~/Library/Application Scripts/com.microsoft.edgemac.wdgExtension.Canary",

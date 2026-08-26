@@ -1,6 +1,6 @@
 cask "ollama-app" do
-  version "0.31.2"
-  sha256 "e8e7ad9e312b2dff11da2c1f3b18401e2096afaaa9ac8abbf01c64e67bad802d"
+  version "0.33.0"
+  sha256 "db293588d4bf91f6122e79d49cf58535922236448b59dd414de7df1c408346f4"
 
   url "https://github.com/ollama/ollama/releases/download/v#{version}/Ollama-darwin.zip",
       verified: "github.com/ollama/ollama/"
@@ -18,6 +18,9 @@ cask "ollama-app" do
 
   app "Ollama.app"
   binary "#{appdir}/Ollama.app/Contents/Resources/ollama"
+
+  uninstall launchctl: "com.ollama.ollama",
+            quit:      "com.electron.ollama"
 
   zap trash: [
     "~/.ollama",

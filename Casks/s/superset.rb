@@ -1,9 +1,9 @@
 cask "superset" do
   arch arm: "-arm64"
 
-  version "1.14.3"
-  sha256 arm:   "c06ff8106777e12e17867f4558229f00d25260175daf3d69148c89e95688bb50",
-         intel: "9176b8e634b1565f02af023572e4c7730fd5883938de05f86b09369c34db210d"
+  version "1.24.2"
+  sha256 arm:   "e73fd7367f6186e6aa74c82c1b861a19edaf0ad9886334305e92cf1b8d78d01c",
+         intel: "f129efc1eaf3fccd3f4ed0f00500a149eb0798c8881541a5196d41cde6a9fb68"
 
   url "https://github.com/superset-sh/superset/releases/download/desktop-v#{version}/Superset-#{version}#{arch}.dmg",
       verified: "github.com/superset-sh/superset/"
@@ -20,10 +20,14 @@ cask "superset" do
 
   app "Superset.app"
 
+  uninstall quit: "com.superset.desktop"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.superset.desktop.sfl*",
     "~/Library/Application Support/Superset",
     "~/Library/Caches/com.superset.desktop",
     "~/Library/HTTPStorages/com.superset.desktop",
+    "~/Library/Logs/Superset",
     "~/Library/Preferences/com.superset.desktop.plist",
     "~/Library/Saved Application State/com.superset.desktop.savedState",
   ]

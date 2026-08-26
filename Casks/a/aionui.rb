@@ -1,18 +1,18 @@
 cask "aionui" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.1.33"
-  sha256 arm:   "0bf8cbdee07bed25499f37283a02edda159ce7383860aa457be965975c4ae0c3",
-         intel: "48952114f9dccd8be3490d1cee1d4b3c25d3431a877642fe5d42d9d04c9954e4"
+  version "2.1.61"
+  sha256 arm:   "b11dce9dd57c8e225dbea1843fe2acc8c5a01f8f3f339c1201eb68553e9dceaa",
+         intel: "8bebf410048ed8d25d712d7693e54d4c6d5b00687642c58acfdfea8fe4725b78"
 
-  url "https://github.com/iOfficeAI/AionUi/releases/download/v#{version}/AionUi-#{version}-mac-#{arch}.dmg"
+  url "https://static.aionui.com/releases/#{version}/AionUi-#{version}-mac-#{arch}.dmg"
   name "AionUi"
   desc "Unified GUI for command-line AI agents"
-  homepage "https://github.com/iOfficeAI/AionUi"
+  homepage "https://www.aionui.com/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://static.aionui.com/releases/latest-mac.yml"
+    regex(/^version:\s*v?(\d+(?:\.\d+)+)/i)
   end
 
   auto_updates true
@@ -24,6 +24,7 @@ cask "aionui" do
     "~/.aionui",
     "~/Library/Application Support/AionUi",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.aionui.app.sfl*",
+    "~/Library/Logs/AionUi",
     "~/Library/Preferences/com.aionui.app.plist",
     "~/Library/Saved Application State/com.aionui.app.savedState",
   ]

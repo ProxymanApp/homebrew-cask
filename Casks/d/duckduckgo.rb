@@ -1,6 +1,6 @@
 cask "duckduckgo" do
-  version "1.197.0,754"
-  sha256 "50c440046e052fa875fc436d4f18c27a68227527d3bcda63337a30f181bcdc74"
+  version "1.204.0,797"
+  sha256 "c2a59a26308ef8fe7e75de0c0056242800a08b68f5e1215d9b67908d40b681ff"
 
   url "https://staticcdn.duckduckgo.com/macos-desktop-browser/duckduckgo-#{version.csv.first}.#{version.csv.second}.dmg"
   name "DuckDuckGo"
@@ -20,8 +20,12 @@ cask "duckduckgo" do
   app "DuckDuckGo.app"
 
   zap trash: [
+    "~/Library/Application Scripts/HKE973VLUW.com.duckduckgo.macos.browser*",
+    "~/Library/Application Support/com.duckduckgo.macos.browser",
+    "~/Library/Application Support/DuckDuckGo",
     "~/Library/Caches/com.duckduckgo.macos.browser",
     "~/Library/Containers/com.duckduckgo.macos.browser",
+    "~/Library/Group Containers/HKE973VLUW.com.duckduckgo.macos.browser*",
     "~/Library/HTTPStorages/com.duckduckgo.macos.browser",
     "~/Library/Preferences/com.duckduckgo.macos.browser.plist",
     "~/Library/Saved Application State/com.duckduckgo.macos.browser.savedState",

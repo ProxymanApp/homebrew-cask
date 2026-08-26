@@ -1,11 +1,11 @@
 cask "warp" do
-  version "0.2026.07.08.17.54.stable_02"
-  sha256 "43d782779a23cb52c2ac38944f6e5c787ee11c09db4ef029b6228cb6cd8eede6"
+  version "0.2026.08.19.08.15.stable_01"
+  sha256 "464dedeeb39c5b9db9f5af1698d438c04bc22be664e91bfa01fa8d77e934f617"
 
   url "https://app.warp.dev/download/brew?version=v#{version}"
   name "Warp"
   desc "Rust-based terminal"
-  homepage "https://www.warp.dev/"
+  homepage "https://www.warp.dev/terminal"
 
   livecheck do
     url "https://releases.warp.dev/channel_versions.json"

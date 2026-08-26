@@ -1,32 +1,15 @@
 cask "lm-studio" do
   arch arm: "arm64", intel: "x64"
-  livecheck_arch = on_arch_conditional intel: "x86", arm: "arm64"
+  livecheck_arch = on_arch_conditional arm: "arm64", intel: "x86"
   os macos: "darwin", linux: "linux"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
 
-  version "0.4.19,2"
-
-  url_end = on_system_conditional linux: ".AppImage", macos: ".dmg"
-
-  url "https://installers.lmstudio.ai/#{os}/#{arch}/#{version.tr(",", "-")}/LM-Studio-#{version.tr(",", "-")}-#{arch}#{url_end}"
-  name "LM Studio"
-  desc "Discover, download, and run local LLMs"
-  homepage "https://lmstudio.ai/"
-
-  livecheck do
-    url "https://versions-prod.lmstudio.ai/update/#{os}/#{livecheck_arch}/#{version.csv.first}"
-    strategy :json do |json|
-      version = json["version"]
-      build = json["build"]
-      next if version.blank? || build.blank?
-
-      "#{version},#{build}"
-    end
-  end
-
-  auto_updates true
+  version "0.4.21,2"
 
   on_macos do
-    sha256 "ad666991d8441ac3d8bfb8050393d55ad23e454e5de431a22e1f753b55bebe3e"
+    sha256 "0343d0df8f15428bcd6c1aa7979cf492b64a79cd2d3d9419d1a67541d36ecf31"
+
+    depends_on macos: :monterey
     depends_on arch: :arm64
 
     app "LM Studio.app"
@@ -46,11 +29,28 @@ cask "lm-studio" do
       "~/Library/Saved Application State/ai.elementlabs.lmstudio.savedState",
     ]
   end
-
   on_linux do
-    sha256 arm64_linux:  "a246fa471b6d9af55976583e5753fc53008e847817225fbc7c2446cbf266901e",
-           x86_64_linux: "911f3855161b28e622f18e3de3f285ac8c336caea7c128a8ac891a2092437872"
+    sha256 arm64_linux:  "7edfee77530e3f778e11982207e21d2faaa1a538967c4a86cfc88aa169c22a7f",
+           x86_64_linux: "1014376d89d668c3814cd20e2b146a076146760ded1ef07b968fb61c58ded355"
 
     app_image "LM-Studio-#{version.tr(",", "-")}-#{arch}.AppImage", target: "LM Studio.AppImage"
   end
+
+  url "https://installers.lmstudio.ai/#{os}/#{arch}/#{version.tr(",", "-")}/LM-Studio-#{version.tr(",", "-")}-#{arch}.#{url_end}"
+  name "LM Studio"
+  desc "Discover, download, and run local LLMs"
+  homepage "https://lmstudio.ai/"
+
+  livecheck do
+    url "https://versions-prod.lmstudio.ai/update/#{os}/#{livecheck_arch}/#{version.csv.first}"
+    strategy :json do |json|
+      version = json["version"]
+      build = json["build"]
+      next if version.blank? || build.blank?
+
+      "#{version},#{build}"
+    end
+  end
+
+  auto_updates true
 end

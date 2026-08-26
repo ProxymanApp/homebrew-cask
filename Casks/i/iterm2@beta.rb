@@ -1,7 +1,7 @@
 cask "iterm2@beta" do
   # NOTE: "2" is not a version number, but an intrinsic part of the product name
-  version "3.7.0beta6"
-  sha256 "5970f32cf603536ab82927b25d4e26e49ab8322522022c084ff4663d8ad5950e"
+  version "3.7.0beta11"
+  sha256 "63914e1529b6726fcff7eee140f59b0866dcee9eb0acc9456f033cb761467838"
 
   url "https://iterm2.com/downloads/beta/iTerm2-#{version.dots_to_underscores}.zip"
   name "iTerm2"
@@ -22,9 +22,11 @@ cask "iterm2@beta" do
     "iterm2",
     "iterm2@nightly",
   ]
-  depends_on macos: :monterey
+  depends_on macos: :ventura
 
   app "iTerm.app"
+
+  uninstall quit: "com.googlecode.iterm2"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.googlecode.iterm2.sfl*",

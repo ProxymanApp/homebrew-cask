@@ -1,19 +1,21 @@
 cask "antigravity-cli" do
-  folder_arch = on_arch_conditional arm: "arm", intel: "x64"
+  arch arm: "arm", intel: "x64"
   file_arch = on_arch_conditional arm: "arm64", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "arm64", intel: "amd64"
   os macos: "darwin", linux: "linux"
+  file_os = on_system_conditional macos: "mac", linux: "linux"
 
-  version "1.1.1,6269367663591424"
-  url_prefix = on_system_conditional macos: "mac", linux: "linux"
+  version "1.1.21,6424454201475072"
+  sha256 arm:          "2f187c5d2135cb4f7ecb178c25801a2b94e2aaa0e9f2dadacff84a68c66f5700",
+         intel:        "d866d427f8cd9381ff826ee8a96cf248ccdbee08ac5cad1653ac775066a4ffca",
+         arm64_linux:  "8626b97aec1ef96abdabd234c0b8259a2fdf2a3f3918c927641f8c821342d5e4",
+         x86_64_linux: "4806a347119d36be6d8ab5cc3f03319bc6aa8407a8d9203de7976a42954cabde"
 
-  sha256 arm:          "83333dd7131bebcce2dfa5f94722efce442d7b67e9ab9b240c91f100a26d4675",
-         intel:        "f04855a9d14a9f29476b2343b5f827e897b187a7adce065201fef15c5d1a70bd",
-         arm64_linux:  "3fc542686c5c82d7a01e3796a8bfcda5ed849c6e70f07d4d0c93e51368952784",
-         x86_64_linux: "2ee167841cdc9a1d7dc5a624f1f15b84ee5dbb94b85af662a7299118cb4b1586"
+  on_macos do
+    depends_on macos: :monterey
+  end
 
-  url "https://storage.googleapis.com/antigravity-public/antigravity-cli/#{version.csv.first}-#{version.csv.second}/#{os}-#{folder_arch}/cli_#{url_prefix}_#{file_arch}.tar.gz",
-      verified: "storage.googleapis.com/antigravity-public/antigravity-cli/"
+  url "https://storage.googleapis.com/antigravity-public/antigravity-cli/#{version.csv.first}-#{version.csv.second}/#{os}-#{arch}/cli_#{file_os}_#{file_arch}.tar.gz"
   name "Google Antigravity CLI"
   desc "Terminal interface for Antigravity agents"
   homepage "https://antigravity.google/product/antigravity-cli"
@@ -30,10 +32,6 @@ cask "antigravity-cli" do
   end
 
   auto_updates true
-
-  on_macos do
-    depends_on macos: :monterey
-  end
 
   binary "antigravity", target: "agy"
 

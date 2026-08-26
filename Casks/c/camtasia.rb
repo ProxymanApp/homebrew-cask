@@ -1,6 +1,6 @@
 cask "camtasia" do
-  version "2026.1.3"
-  sha256 "ccbea2007f3277dfe8c1060a41abb5e90faab4d77ca2d56e68163e3c397d57be"
+  version "2026.2.1"
+  sha256 "480a512cf8d9595ac23a43a649a6feec22a028d99ef113d6b35ca8e4ec145963"
 
   url "https://download.techsmith.com/camtasiamac/releases/#{version}/Camtasia.dmg"
   name "Camtasia"
@@ -20,6 +20,8 @@ cask "camtasia" do
   depends_on macos: :sonoma
 
   app "Camtasia.app"
+
+  uninstall launchctl: "com.techsmith.TechSmithAgent"
 
   zap trash: [
     "/Users/Shared/TechSmith/Camtasia",

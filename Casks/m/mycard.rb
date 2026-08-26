@@ -1,6 +1,6 @@
 cask "mycard" do
-  version "3.0.85"
-  sha256 "af5b7020a588b46d35ec3b19bb29a0fa9de120ecf0125d00462cd45865c03dc3"
+  version "3.0.87"
+  sha256 "ed302498dd66e3f0d42e428991ed1f93f953f3a7b295c568eab116a0d83a2634"
 
   url "https://cdn02.moecube.com:444/downloads/MyCard-#{version}.dmg",
       verified: "cdn02.moecube.com:444/downloads/"
@@ -18,6 +18,7 @@ cask "mycard" do
   app "MyCard.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mycard.mycard.sfl*",
     "~/Library/Application Support/mycard",
     "~/Library/Application Support/MyCardLibrary",
     "~/Library/Logs/MyCard",

@@ -1,6 +1,6 @@
 cask "qgroundcontrol" do
-  version "5.0.8"
-  sha256 "1f5fc88f331302adcb4d00c3b92f05ef83bad748196a2646497c50800ab74822"
+  version "5.1.3"
+  sha256 "8b0f2fd0a26f342da2cf25f92aed7ca144401f4ac5ee5d323df1e05f433a7c33"
 
   url "https://github.com/mavlink/qgroundcontrol/releases/download/v#{version}/QGroundControl.dmg",
       verified: "github.com/mavlink/qgroundcontrol/"
@@ -13,7 +13,7 @@ cask "qgroundcontrol" do
     strategy :github_latest
   end
 
-  depends_on macos: :monterey
+  depends_on macos: :ventura
 
   app "QGroundControl.app"
 

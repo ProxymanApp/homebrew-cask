@@ -1,23 +1,11 @@
 cask "readest" do
   arch arm: "aarch64", intel: "amd64"
+  os macos: "universal.dmg", linux: "#{arch}.AppImage"
 
-  version "0.11.18"
-
-  url_end = on_system_conditional linux: "#{arch}.AppImage", macos: "universal.dmg"
-
-  url "https://github.com/readest/readest/releases/download/v#{version}/Readest_#{version}_#{url_end}",
-      verified: "github.com/readest/readest/"
-  name "Readest"
-  desc "Ebook reader"
-  homepage "https://readest.com/"
-
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  version "0.12.1"
 
   on_macos do
-    sha256 "227a47a3b54ea3a7e02381c718f141f8d8dcaac4006803851d27a9043e29e3e8"
+    sha256 "178a7e40c2230034913e04a02787335db2d4c5920faee85826180d63f146ce37"
 
     auto_updates true
     depends_on macos: :monterey
@@ -33,11 +21,20 @@ cask "readest" do
       "~/Library/WebKit/readest",
     ]
   end
-
   on_linux do
-    sha256 arm64_linux:  "f715e13503b54c7786d8bf6edd2932a3b2cbe8fe76f52f6afdd5261ed31a8f08",
-           x86_64_linux: "538f2d8503f3d748964ac1f7c0cfbfe4115f82c10fa8c6f6a871428af562dabc"
+    sha256 arm64_linux:  "5dfdbdd35228ce70c15b32993bc74857c393075dc1a9d84aa470f8ce87d383e8",
+           x86_64_linux: "2e1f05e000e1aa5d49d8cd0820281a01272964f8641483ec7ef7a813374172d8"
 
     app_image "Readest_#{version}_#{arch}.AppImage", target: "Readest.AppImage"
+  end
+
+  url "https://github.com/readest/readest/releases/download/v#{version}/Readest_#{version}_#{os}"
+  name "Readest"
+  desc "Ebook reader"
+  homepage "https://readest.com/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
   end
 end

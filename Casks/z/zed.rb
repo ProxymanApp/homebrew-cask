@@ -1,9 +1,9 @@
 cask "zed" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "1.10.2"
-  sha256 arm:   "28853c50ca221ed14d84ddec2f9ea44f1afe6bfda83265a5f2a52c250b5bfb0d",
-         intel: "f11baffeefda408715c9a9cfacea6b7cfd55296a30e6e39a785dcd74b8333958"
+  version "1.16.3"
+  sha256 arm:   "4d1b44795b54d03eec7dc504acf41b9803b5b53f961249012367ec1d9048a371",
+         intel: "2655df185c417f0a9cb7546786e434408ce728ffc4b3129e0d9526ac3740a039"
 
   url "https://zed.dev/api/releases/stable/#{version}/Zed-#{arch}.dmg"
   name "Zed"
@@ -22,9 +22,10 @@ cask "zed" do
 
   app "Zed.app"
   binary "#{appdir}/Zed.app/Contents/MacOS/cli", target: "zed"
-
   generate_completions_from_executable "#{HOMEBREW_PREFIX}/bin/zed", "--completions",
                                        shells: [:bash, :zsh, :fish, :pwsh]
+
+  uninstall quit: "dev.zed.Zed"
 
   zap trash: [
     "~/.config/zed",

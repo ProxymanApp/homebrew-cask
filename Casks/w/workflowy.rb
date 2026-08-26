@@ -1,6 +1,6 @@
 cask "workflowy" do
-  version "4.3.2607080959"
-  sha256 "1bb7cbdbca0d3e4d30caa962e3fb3d0780fc732b8189892181c4531cf6901b69"
+  version "4.3.2608251350"
+  sha256 "9bd468c3e8a99919ba638933e1f28bca499de2473268d6f8d43c30317d04a92d"
 
   url "https://github.com/workflowy/desktop/releases/download/v#{version}/WorkFlowy.zip",
       verified: "github.com/workflowy/desktop/"
@@ -19,7 +19,9 @@ cask "workflowy" do
   app "WorkFlowy.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.workflowy.desktop.sfl*",
     "~/Library/Application Support/WorkFlowy",
+    "~/Library/Logs/WorkFlowy",
     "~/Library/Preferences/com.workflowy.desktop.plist",
     "~/Library/Saved Application State/com.workflowy.desktop.savedState",
   ]

@@ -1,9 +1,9 @@
 cask "nuclear" do
   arch arm: "aarch64", intel: "x64"
 
-  version "1.42.2"
-  sha256 arm:   "47f1dbd7f97a9abca4824fb77dfcb1a0c1f1d4d5bbdf8cca4d6d29bde27b4ae5",
-         intel: "f52b0c278d5db8f59ce6813a1428481959e7c3209a5c94428b984f8fdb3a2a85"
+  version "1.47.1"
+  sha256 arm:   "a775aa5ab00c6b9d38bbb85280808eb2ace62510e7ed419f1b14f7fecf88ec2e",
+         intel: "b316d666509eaded9573f820f30a0f6093b3311d267c9a3aa616b3011e5f3e28"
 
   url "https://github.com/nukeop/nuclear/releases/download/player%40#{version}/Nuclear_#{version}_#{arch}.dmg",
       verified: "github.com/nukeop/nuclear/"
@@ -23,9 +23,13 @@ cask "nuclear" do
   app "Nuclear.app"
 
   zap trash: [
+    "~/Library/Application Support/com.nuclearplayer",
     "~/Library/Application Support/nuclear",
+    "~/Library/Caches/com.nuclearplayer",
+    "~/Library/Logs/com.nuclearplayer",
     "~/Library/Logs/nuclear",
     "~/Library/Preferences/nuclear.plist",
     "~/Library/Saved Application State/nuclear.savedState",
+    "~/Library/WebKit/com.nuclearplayer",
   ]
 end

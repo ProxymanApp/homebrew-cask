@@ -1,6 +1,6 @@
 cask "paper" do
-  version "5.4.5"
-  sha256 "5411cbee2fd73f7f309e3df50d0e43264aa25f7b8f5f7bc17f0e25aea60c6660"
+  version "5.5.5"
+  sha256 "ccbef03d6fecf529e34c566034d8f052d5d719d3886fd19469cf27bfd078c16c"
 
   url "https://www.paperapp.net/app/pap.er_v#{version}.dmg"
   name "pap.er"
@@ -20,6 +20,7 @@ cask "paper" do
   uninstall quit: "com.w.paper"
 
   zap trash: [
+    "~/Library/Application Scripts/com.w.paper",
     "~/Library/Containers/com.w.paper",
     "~/Library/Containers/com.w.paper-LaunchAtLoginHelper",
   ]

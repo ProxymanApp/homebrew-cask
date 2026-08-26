@@ -1,6 +1,6 @@
 cask "whichspace" do
-  version "1.0.6"
-  sha256 "591bfc7f0957bce15cefe498fb1490b5678d4e76c4ad8fa5e85a31dd4fe0ceb2"
+  version "1.3.4"
+  sha256 "165950ffcca6b288470b46199a3cb37a13bb65ed70685a8a18acad25890eb7ec"
 
   url "https://github.com/gechr/WhichSpace/releases/download/v#{version}/WhichSpace.zip"
   name "WhichSpace"
@@ -22,6 +22,7 @@ cask "whichspace" do
   zap trash: [
     "~/Library/Caches/io.gechr.WhichSpace",
     "~/Library/Cookies/io.gechr.WhichSpace.binarycookies",
+    "~/Library/HTTPStorages/io.gechr.WhichSpace",
     "~/Library/Preferences/io.gechr.WhichSpace.plist",
     "~/Library/Saved Application State/io.gechr.WhichSpace.savedState",
   ]

@@ -1,11 +1,11 @@
 cask "warp@preview" do
-  version "0.2026.07.08.17.54.preview_02"
-  sha256 "0a0167287cdeff3e94a31b81ff21a9e85d8281bd7ec42fc860d11452053cad83"
+  version "0.2026.08.19.08.15.preview_01"
+  sha256 "37c22690ca594a8b24f5d86634a81930a3729916920548f655f0953e017ed24c"
 
   url "https://releases.warp.dev/preview/v#{version}/WarpPreview.dmg"
   name "Warp Preview"
   desc "Rust-based terminal"
-  homepage "https://www.warp.dev/"
+  homepage "https://www.warp.dev/terminal"
 
   livecheck do
     url "https://releases.warp.dev/channel_versions.json"

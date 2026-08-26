@@ -1,6 +1,6 @@
 cask "cc-pocket" do
-  version "1.103.0,184"
-  sha256 "d8fa4ae925f8919187f89c27743b9e709a3affcb9564789dcc44aa5c97c1165f"
+  version "1.119.1,229"
+  sha256 "ce76f962cf9aeab1e270cbbfbb32339bc50f6ec42ea58baea798aad3232f38a7"
 
   url "https://github.com/K9i-0/ccpocket/releases/download/macos/v#{version.csv.first}%2B#{version.csv.second}/CC-Pocket-macos-v#{version.csv.first}.dmg",
       verified: "github.com/K9i-0/ccpocket/"
@@ -24,13 +24,15 @@ cask "cc-pocket" do
   end
 
   auto_updates true
-  depends_on macos: :big_sur
+  depends_on macos: :monterey
 
   app "CC Pocket.app"
 
   zap trash: [
+    "~/Library/Application Scripts/com.k9i.ccpocket",
     "~/Library/Application Support/com.k9i.ccpocket",
     "~/Library/Caches/com.k9i.ccpocket",
+    "~/Library/Containers/com.k9i.ccpocket",
     "~/Library/HTTPStorages/com.k9i.ccpocket",
     "~/Library/Preferences/com.k9i.ccpocket.plist",
     "~/Library/Saved Application State/com.k9i.ccpocket.savedState",

@@ -1,6 +1,6 @@
 cask "atomic-wallet" do
-  version "2.101.16"
-  sha256 "bffe469c768d41083f722c3733f9e980b8e1978c4313f4b60ffc17420cce4d93"
+  version "2.104.6"
+  sha256 "31803a87c8f83b7e026148f1f9f82ecbd40c3e29a2fd817702dff6fc0991df08"
 
   url "https://releases.atomicwallet.io/AtomicWallet-#{version}.dmg"
   name "Atomic Wallet"
@@ -18,6 +18,7 @@ cask "atomic-wallet" do
 
   zap trash: [
     "~/Library/Application Support/atomic",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.atomicwallet.sfl*",
     "~/Library/Logs/atomic",
     "~/Library/Preferences/io.atomicwallet.plist",
     "~/Library/Saved Application State/io.atomicwallet.savedState",

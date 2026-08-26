@@ -1,6 +1,6 @@
 cask "visualdiffer" do
-  version "2.1.18"
-  sha256 "5c63f71aca6fcdf8588978e9f7051bfc7137a67dd1e60a44c7f2c57e645d531e"
+  version "2.1.21"
+  sha256 "089f7854648310321a6474da42369cda8b2833684e18fbcfdec11860f636fa16"
 
   url "https://github.com/visualdiffer/visualdiffer/releases/download/v#{version}/VisualDiffer-#{version}.zip",
       verified: "github.com/visualdiffer/visualdiffer/"

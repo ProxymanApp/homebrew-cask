@@ -1,9 +1,9 @@
 cask "clion" do
   arch arm: "-aarch64"
 
-  version "2026.1.4,261.26222.59"
-  sha256 arm:   "8b7b2d5fb77246048e264153303f7f864c3a7b698636a9f5dd2ed7fef27ae914",
-         intel: "009b7e2b5cefe1eca3773b9b51e146c01f66ab3bce79bddf7c0da4d0c6a33c1b"
+  version "2026.2.1,262.9437.136"
+  sha256 arm:   "5017110b817f95aa2128658e0cd069b16935be85c0585f6e01b4fadd6fc663d3",
+         intel: "7ef4edf409d635e4f2007860bb124acd6489cc1c8fd903749840e4028e9cdd9d"
 
   url "https://download.jetbrains.com/cpp/CLion-#{version.csv.first}#{arch}.dmg"
   name "CLion"
@@ -27,16 +27,8 @@ cask "clion" do
   depends_on macos: :monterey
 
   app "CLion.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/clion.wrapper.sh"
-  binary shimscript, target: "clion"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/CLion.app/Contents/MacOS/clion' "$@"
-    EOS
-  end
+  command_wrapper "clion",
+                  executable: "#{appdir}/CLion.app/Contents/MacOS/clion"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/CLion#{version.major_minor}",

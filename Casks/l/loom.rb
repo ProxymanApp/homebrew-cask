@@ -1,9 +1,9 @@
 cask "loom" do
   arch arm: "-arm64"
 
-  version "0.360.0"
-  sha256 arm:   "42e61b6c126745d13b5544f3e3413e8ec0c30b8d3208b43546cd0315269bd79a",
-         intel: "3d83be6efae203e4311ed916629e5058bcb7ec753f83cd554d7b5c074641a664"
+  version "0.370.1"
+  sha256 arm:   "ba9da95761a2542a5036e35222b9c2232bfdff3b6b6d076d35298306f70c8dac",
+         intel: "85c7d6c4866c2ff911d7cf12ad2c66f9287ea9c55632c850bf3f50d10e027d2a"
 
   url "https://packages.loom.com/desktop-packages/Loom-#{version}#{arch}.dmg"
   name "Loom"
@@ -23,6 +23,7 @@ cask "loom" do
   uninstall login_item: "Loom"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.loom.desktop.sfl*",
     "~/Library/Application Support/Loom",
     "~/Library/Logs/Loom",
     "~/Library/Preferences/com.loom.desktop.plist",

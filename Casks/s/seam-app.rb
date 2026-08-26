@@ -1,6 +1,6 @@
 cask "seam-app" do
-  version "1.8.7"
-  sha256 "1c0f26b0a7cbf5bfabad54567add733440710458ca4f572a761f03ef825755f0"
+  version "1.14.3"
+  sha256 "a9f028501fb0080f513b446e1a069d772465e1260406ae30f609ff54bd731c47"
 
   url "https://releases.getseam.app/#{version}/Seam.dmg"
   name "Seam"
@@ -21,7 +21,10 @@ cask "seam-app" do
 
   zap trash: [
     "~/Library/Caches/app.seam",
+    "~/Library/Caches/app.seam.Seam",
+    "~/Library/HTTPStorages/app.seam.Seam",
     "~/Library/Logs/Seam",
+    "~/Library/Preferences/app.seam.Seam.plist",
     "~/Library/Preferences/seam.app.plist",
   ]
 end

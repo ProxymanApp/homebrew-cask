@@ -1,6 +1,6 @@
 cask "granola" do
-  version "7.394.2"
-  sha256 "68966d873ce9a20efbb52da7a0cfde452587add158c1185b1c4000bba19a82b7"
+  version "7.503.0"
+  sha256 "2585b48a202e33765c25ec0dd7baca1908b68f69c42e424515898e6d2646fb3d"
 
   url "https://dr2v7l5emb758.cloudfront.net/#{version}/Granola-#{version}-mac-universal.dmg",
       verified: "dr2v7l5emb758.cloudfront.net/"
@@ -18,7 +18,10 @@ cask "granola" do
 
   app "Granola.app"
 
+  uninstall quit: "com.granola.app"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.granola.app.sfl*",
     "~/Library/Application Support/Granola",
     "~/Library/Caches/com.granola.app",
     "~/Library/HTTPStorages/com.granola.app",

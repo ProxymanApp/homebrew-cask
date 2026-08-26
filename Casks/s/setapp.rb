@@ -1,6 +1,6 @@
 cask "setapp" do
-  version "3.53.11,152,1783581855"
-  sha256 "f893a14472ccc4f8ea6ce62db9a4971aedd83dba7ff303333b884c3446ffc749"
+  version "3.55.0,156,1787228237"
+  sha256 "63d7f3935317f9d57c869586160583810c7995c86a2b159f5f72cfa88ebbb2c5"
 
   url "https://dl.devmate.com/com.setapp.DesktopClient/#{version.csv.second}/#{version.csv.third}/Setapp-#{version.csv.second}.zip",
       verified: "devmate.com/com.setapp.DesktopClient/"
@@ -24,11 +24,23 @@ cask "setapp" do
 
   app "Setapp.app"
 
+  uninstall launchctl: [
+    "com.setapp.DesktopClient.SetappAgent",
+    "com.setapp.DesktopClient.SetappAssistant",
+    "com.setapp.DesktopClient.SetappLauncher",
+    "com.setapp.DesktopClient.SetappUpdater",
+  ]
+
   zap trash: [
     "~/Library/Application Scripts/com.setapp.DesktopClient.SetappAgent.FinderSyncExt",
+    "~/Library/Application Support/Setapp*",
     "~/Library/Caches/com.setapp.DesktopClient",
     "~/Library/Caches/com.setapp.DesktopClient.SetappAgent",
+    "~/Library/Containers/com.setapp.DesktopClient.SetappAgent.FinderSyncExt",
+    "~/Library/HTTPStorages/com.setapp.DesktopClient*",
+    "~/Library/LaunchAgents/com.setapp.DesktopClient.*plist",
     "~/Library/Logs/Setapp",
+    "~/Library/Preferences/com.setapp.DesktopClient.plist",
     "~/Library/Preferences/com.setapp.DesktopClient.SetappAgent.plist",
     "~/Library/Saved Application State/com.setapp.DesktopClient.savedState",
   ]

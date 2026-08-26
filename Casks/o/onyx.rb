@@ -40,7 +40,7 @@ cask "onyx" do
     end
   end
   on_tahoe :or_newer do
-    version "5.0.1"
+    version "5.0.2"
 
     url "https://www.titanium-software.fr/download/26/OnyX.dmg"
 
@@ -69,6 +69,7 @@ cask "onyx" do
   app "OnyX.app"
 
   zap trash: [
+    "~/Library/Caches/com.apple.helpd/Generated/com.titanium.OnyX.help*",
     "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.titanium.OnyX.help*",
     "~/Library/Logs/OnyX.log",
     "~/Library/Preferences/com.titanium.OnyX.plist",

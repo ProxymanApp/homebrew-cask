@@ -1,6 +1,6 @@
 cask "hyperwhisper" do
-  version "2.41.0"
-  sha256 "198fe90c838881a8f97ad0bfb4e3bf937c6e3a2972836b5e9ff6d0497a8ab36a"
+  version "2.44.1"
+  sha256 "1d62f9c88ef0170e94a83c56998aa9165aa52e59f7f92eadbac248b90f898bae"
 
   url "https://builds.hyperwhisper.com/hyperwhisper-#{version}.dmg"
   name "HyperWhisper"
@@ -22,6 +22,8 @@ cask "hyperwhisper" do
   depends_on macos: :sonoma
 
   app "HyperWhisper.app"
+
+  uninstall quit: "com.hyperwhisper.hyperwhisper"
 
   zap trash: [
     "~/Library/Application Support/HyperWhisper",

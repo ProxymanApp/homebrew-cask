@@ -1,6 +1,6 @@
 cask "happ" do
-  version "2.18.3"
-  sha256 "852694fe1afd29f2b745a1d408de0b1283941387a9a24767da1785ce8ab41915"
+  version "4.1.1"
+  sha256 "31b900f983e5a3113af59e7fb29c5d16e91e222e31fe794a3c70509619b48122"
 
   url "https://github.com/Happ-proxy/happ-desktop/releases/download/#{version}/Happ.macOS.universal.dmg",
       verified: "github.com/Happ-proxy/happ-desktop/"
@@ -13,9 +13,15 @@ cask "happ" do
     strategy :github_latest
   end
 
-  depends_on macos: :big_sur
+  depends_on macos: :ventura
 
   app "Happ.app"
 
-  zap trash: "~/Library/Preferences/Happ"
+  zap trash: [
+    "/Library/LaunchDaemons/com.happ.happd.plist",
+    "~/Library/Application Support/Happ",
+    "~/Library/Caches/Happ",
+    "~/Library/Preferences/com.happ.plist",
+    "~/Library/Preferences/Happ",
+  ]
 end

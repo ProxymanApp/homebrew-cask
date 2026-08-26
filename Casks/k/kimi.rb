@@ -1,6 +1,6 @@
 cask "kimi" do
-  version "3.0.27"
-  sha256 "e6bc1ba02905ee54c1b020cfe3ac24afb2cd54d00eb2f20bdd5ecf01e2b9d5cd"
+  version "3.2.2"
+  sha256 "bed75acd64289736192187fc619e030d8988788e9f56b3276b434cc1d6456b74"
 
   url "https://kimi-img.moonshot.cn/app/download/mac/kimi_#{version}.dmg",
       verified: "kimi-img.moonshot.cn/"
@@ -19,9 +19,14 @@ cask "kimi" do
   app "Kimi Installer.app/Contents/Helpers/Kimi.app"
 
   zap trash: [
+    "~/.kimi-webbridge",
+    "~/.kimi-work",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.moonshot.kimichat.sfl*",
     "~/Library/Application Support/kimi",
+    "~/Library/Application Support/kimi-desktop",
     "~/Library/Caches/KimiAppCache",
     "~/Library/HTTPStorages/com.moonshot.kimichat",
+    "~/Library/Logs/kimi-desktop",
     "~/Library/Preferences/com.moonshot.kimichat.plist",
   ]
 end

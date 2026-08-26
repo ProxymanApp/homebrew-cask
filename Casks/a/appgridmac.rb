@@ -1,6 +1,6 @@
 cask "appgridmac" do
-  version "1.1.20"
-  sha256 "f91aabe5d9c261a57a63a325e7c6b1e8592014834ce91e369642b2a7d1a394e0"
+  version "1.2.3"
+  sha256 "97dfae3f7f9a8f9465c92160dc0968b810f0ccc00d1c19d8cd73e9e278df0d40"
 
   url "https://zekalogic.com/appgrid/app/AppGridMac-#{version}.zip",
       verified: "zekalogic.com/appgrid/app/"
@@ -19,6 +19,8 @@ cask "appgridmac" do
 
   zap trash: [
     "~/Library/Application Support/com.zekalogic.appgrid.app.direct",
+    "~/Library/Caches/com.zekalogic.appgrid.app.direct",
+    "~/Library/HTTPStorages/com.zekalogic.appgrid.app.direct",
     "~/Library/Preferences/com.zekalogic.appgrid.app.direct.plist",
     "~/Library/Saved Application State/com.zekalogic.appgrid.app.direct.savedState",
   ]

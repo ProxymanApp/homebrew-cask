@@ -1,6 +1,6 @@
 cask "supasidebar" do
-  version "0.21.0"
-  sha256 "870224864c1538961c263e8152f26f2efe1509ba7bbe49a2a1dc67d053d32765"
+  version "1.0.1"
+  sha256 "0b332f5530fc1ef05a040d05e8f2e5ac902be53fa027690a86fd82ce57ea3714"
 
   url "https://github.com/auspy/supasidebar-updates/releases/download/v#{version}/supasidebar_v#{version}.dmg",
       verified: "github.com/auspy/supasidebar-updates/"
@@ -17,7 +17,9 @@ cask "supasidebar" do
 
   zap trash: [
     "~/Library/Application Support/com.supasidebar",
+    "~/Library/Application Support/supasidebar",
     "~/Library/Caches/com.supasidebar",
+    "~/Library/Caches/com.vinayak.supasidebar",
     "~/Library/HTTPStorages/com.supasidebar",
     "~/Library/HTTPStorages/com.supasidebar.binarycookies",
     "~/Library/Preferences/com.supasidebar.plist",

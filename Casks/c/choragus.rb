@@ -1,6 +1,6 @@
 cask "choragus" do
-  version "4.12"
-  sha256 "e6ab362e7d7c655715ce0bd5dd79bd52a043819a1afb87cc9244e4fcdeee4c6a"
+  version "4.14"
+  sha256 "6d38def7cb55472df3486d4a2b62935fcf6251aedc3d1706bacc606c7009dfa2"
 
   url "https://github.com/scottwaters/Choragus/releases/download/v#{version}/Choragus.dmg"
   name "Choragus"
@@ -16,6 +16,8 @@ cask "choragus" do
   depends_on macos: :sonoma
 
   app "Choragus.app"
+
+  uninstall quit: "com.choragus.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.choragus.app",

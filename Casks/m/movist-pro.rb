@@ -1,9 +1,8 @@
 cask "movist-pro" do
-  version "2.15.5"
-  sha256 "25c2b13fcc7e315817fe40175b16f9dbbca493faed6892d1ade9de5c9698fde9"
+  version "2.17.5"
+  sha256 "0eefefeaefe409d50c049628b97f822a64645c6d9c35aecf273a4074dbbbea52"
 
-  url "https://s3.ap-northeast-2.amazonaws.com/update.cocoable.com/MovistPro_#{version}.dmg",
-      verified: "s3.ap-northeast-2.amazonaws.com/update.cocoable.com/"
+  url "https://update.cocoable.com/MovistPro_#{version}.dmg"
   name "Movist Pro"
   desc "Media player"
   homepage "https://movistprime.com/"
@@ -14,9 +13,11 @@ cask "movist-pro" do
   end
 
   auto_updates true
-  depends_on macos: :big_sur
+  depends_on macos: :monterey
 
   app "Movist Pro.app"
+
+  uninstall quit: "com.movist.MovistPro"
 
   zap trash: [
     "~/Library/Application Scripts/com.movist.MovistPro.MovistSafariExtension",

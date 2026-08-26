@@ -1,6 +1,6 @@
 cask "dot" do
-  version "2.3.0"
-  sha256 "8bfd5fea433d4f399cf183f5fcdfcd33dae632d4d692a2dfd5a1916358960f4a"
+  version "2.3.4"
+  sha256 "f969a9714f051b659f52de42d4cb6b8cf9a7bac016f75d1108866972e718e047"
 
   url "https://github.com/prateekkeshari/dot-releases/releases/download/v#{version}/Dot-#{version}.dmg",
       verified: "github.com/prateekkeshari/dot-releases/"
@@ -18,8 +18,8 @@ cask "dot" do
   app "Dot.app"
 
   zap trash: [
-    "~/Library/Application Scripts/com.dot.app/",
-    "~/Library/Caches/com.dot.app/",
-    "~/Library/Containers/com.dot.app/",
+    "~/Library/Application Scripts/com.dot.app",
+    "~/Library/Caches/com.dot.app",
+    "~/Library/Containers/com.dot.app",
   ]
 end

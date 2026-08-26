@@ -1,9 +1,9 @@
 cask "reqable" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "3.2.7"
-  sha256 arm:   "9c6bc39c9a12dd329a380522677abba33f1d1bb296e4253d91c7d9b72cff6761",
-         intel: "27a8ac521d222388d9a9b31f65fc5cc096501a8b050cd57a8d7d5223f28d92da"
+  version "3.2.23"
+  sha256 arm:   "894def95a02a53fc0fbdbf9ae2f5291ccc25ba1e8cda2fd87c31dc80fe34fe4c",
+         intel: "feb96a2ab938bb118119fec97666682f5b06d79195f6ffffef29fb5227ab2b9e"
 
   url "https://github.com/reqable/reqable-app/releases/download/#{version}/reqable-app-macos-#{arch}.dmg",
       verified: "github.com/reqable/reqable-app/"
@@ -11,24 +11,36 @@ cask "reqable" do
   desc "Advanced API Debugging Proxy"
   homepage "https://reqable.com/"
 
+  # Not every GitHub release provides a file for macOS
+  # so we check multiple recent releases instead of only the "latest" release.
+  livecheck do
+    url :url
+    regex(/^reqable[._-]app[._-]macos[._-]#{arch}\.dmg$/i)
+    strategy :github_releases do |json, regex|
+      json.map do |release|
+        next if release["draft"] || release["prerelease"]
+
+        release["assets"]&.map do |asset|
+          match = asset["name"]&.match(regex)
+          next if match.blank?
+
+          release["tag_name"]&.[](/^v?(\d+(?:\.\d+)+)$/i, 1)
+        end
+      end.flatten
+    end
+  end
+
   auto_updates true
   depends_on macos: :big_sur
 
   app "Reqable.app"
 
-  uninstall_postflight do
-    stdout, * = system_command "/usr/bin/security",
-                               args: ["find-certificate", "-a", "-c", "Reqable Proxy", "-Z"],
-                               sudo: true
-    hashes = stdout.lines.grep(/^SHA-256 hash:/) { |l| l.split(":").second.strip }
-    hashes.each do |h|
-      system_command "/usr/bin/security",
-                     args: ["delete-certificate", "-Z", h],
-                     sudo: true
-    end
+  uninstall_postflight_steps do
+    delete_keychain_certificates "Reqable Proxy"
   end
 
   zap trash: [
+    "~/Library/Application Support/com.reqable.macosx",
     "~/Library/Caches/Reqable",
     "~/Library/Preferences/com.reqable.macosx.plist",
   ]

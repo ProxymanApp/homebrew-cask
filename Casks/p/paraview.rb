@@ -20,7 +20,9 @@ cask "paraview" do
     url "https://www.paraview.org/files/listing.txt"
     regex(%r{/v?(?:\d+(?:\.\d+)+)/ParaView[._-]v?(\d+(?:[.-]\d+)+)(?:[._-](.*?))?[._-](?:#{arch}|universal)\.dmg}i)
     strategy :page_match do |page, regex|
-      page.scan(regex).map do |match|
+      page.scan(regex).filter_map do |match|
+        next if match[1]&.match?(/^RC/i)
+
         match[1].present? ? "#{match[0]},#{match[1]}" : match[0]
       end
     end

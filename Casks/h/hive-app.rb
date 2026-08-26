@@ -1,9 +1,9 @@
 cask "hive-app" do
   arch arm: "-arm64"
 
-  version "1.2.16"
-  sha256 arm:   "d18070a3aaa8149a3a4fd493037366ee3c03c9fac8f214d619ca4fc8a3e502fa",
-         intel: "afbc26de38f1d069254ec44785a67e9fd14d6bc5020c2cc2f632574f803e017f"
+  version "1.2.39"
+  sha256 arm:   "4f8a33c3feb1fbf2c734753c7d61b4998c1c3af34722ed000d7d55baaef800d7",
+         intel: "73b48d5289aa18a860e4db8a2e8b00e76f218faa7f194dae86d297fac5bd9bc2"
 
   url "https://github.com/morapelker/hive/releases/download/v#{version}/Hive-#{version}#{arch}.dmg"
   name "Hive"
@@ -17,6 +17,7 @@ cask "hive-app" do
 
   zap trash: [
     "~/.hive",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hive.app.sfl*",
     "~/Library/Application Support/hive",
     "~/Library/Logs/hive",
     "~/Library/Preferences/com.hive.app.plist",

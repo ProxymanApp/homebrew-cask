@@ -2,9 +2,9 @@ cask "apifox" do
   arch arm: "-macOS-arm64"
   livecheck_arch = on_arch_conditional arm: "-arm64"
 
-  version "2.8.38"
-  sha256 arm:   "016f2f9f473f761a7121eccffa87e87f53141d410f89d96356d20c269f8761ab",
-         intel: "7ce130269efdb44107f24fb4754c00c784c61b067830371f525dcae86184c09a"
+  version "2.8.44"
+  sha256 arm:   "ffc37de2b30417f4dc6481d54e997733c4fd9820b0a50e8063dd83b887eab28c",
+         intel: "9488f4ace50b87c03e0d10e59d170301d8172c508c7ef3598048e7059f1261d0"
 
   url "https://file-assets.apifox.com/download/#{version}/Apifox#{arch}-#{version}.dmg",
       verified: "file-assets.apifox.com/download/"
@@ -23,7 +23,9 @@ cask "apifox" do
   app "Apifox.app"
 
   zap trash: [
+    "~/.apifox-ai-agent-debugger",
     "~/Library/Application Support/apifox",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/cn.apifox.app.sfl*",
     "~/Library/Preferences/cn.apifox.app.plist",
     "~/Library/Saved Application State/cn.apifox.app.savedState",
   ]

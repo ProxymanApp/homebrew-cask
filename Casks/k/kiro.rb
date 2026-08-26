@@ -1,9 +1,9 @@
 cask "kiro" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.12.333"
-  sha256  arm:   "5aee5da57ced87f4d3972de4d35f659ff707977660b52f0f7a7193cf04796fa6",
-          intel: "e683cae891ab63ed3e8bf567bd195233fe5740992ade93ec501d486a8aee273c"
+  version "1.0.337"
+  sha256  arm:   "bd58770ee2c543460dc0884147e6e04e694761801022fa71bc830e627d2c10f8",
+          intel: "dbc12ee78c5deab937a75813499ecc8d05a575509bd2404f9cd3efb8ce52b327"
 
   url "https://prod.download.desktop.kiro.dev/releases/stable/darwin-#{arch}/signed/#{version}/kiro-ide-#{version}-stable-darwin-#{arch}.dmg"
   name "kiro"
@@ -26,8 +26,10 @@ cask "kiro" do
   binary "#{appdir}/Kiro.app/Contents/Resources/app/bin/code", target: "kiro"
 
   zap trash: [
-    "~/Library/Application Support/Kiro",
-    "~/Library/Preferences/dev.kiro.desktop.plist",
-    "~/Library/Saved Application State/dev.kiro.desktop.savedState",
-  ]
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/dev.kiro.desktop.sfl*",
+        "~/Library/Application Support/Kiro",
+        "~/Library/Preferences/dev.kiro.desktop.plist",
+        "~/Library/Saved Application State/dev.kiro.desktop.savedState",
+      ],
+      rmdir: "~/.kiro"
 end

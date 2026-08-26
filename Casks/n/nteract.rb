@@ -1,6 +1,6 @@
 cask "nteract" do
-  version "2.6.2,202606300322"
-  sha256 "e8b7a987d4a0b84bb19936f1d009590a791be7d910c3f0c7da0017f71d0c498e"
+  version "2.7.3,202608230344"
+  sha256 "42f096c400dc42dce332bd88598cdb32f5c86534a41b333ad926f22b41b77b0a"
 
   url "https://github.com/nteract/desktop/releases/download/v#{version.csv.first}-stable.#{version.csv.second}/nteract-stable-darwin-arm64.dmg"
   name "nteract"
@@ -23,10 +23,11 @@ cask "nteract" do
 
   app "nteract.app"
 
-  uninstall delete: [
-    "/usr/local/bin/nb",
-    "/usr/local/bin/runt",
-  ]
+  uninstall launchctl: "io.nteract.runtimed",
+            delete:    [
+              "/usr/local/bin/nb",
+              "/usr/local/bin/runt",
+            ]
 
   zap trash: [
     "~/Library/Application Support/nteract",

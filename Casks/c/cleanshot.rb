@@ -1,11 +1,11 @@
 cask "cleanshot" do
-  version "4.8.8"
-  sha256 "dddd72482120856ba6a2984159aacab47ca221be18cb9467867a4f3ba1cdd8a0"
+  version "4.8.10"
+  sha256 "0f1b1cdda9a93908ced0341abb0d505adc55e51d145562013085b1e70f366d84"
 
   url "https://updates.getcleanshot.com/v3/CleanShot-X-#{version}.dmg"
   name "CleanShot"
   desc "Screen capturing tool"
-  homepage "https://getcleanshot.com/"
+  homepage "https://cleanshot.com/"
 
   livecheck do
     url "https://cleanshot.com/changelog"

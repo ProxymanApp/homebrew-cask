@@ -1,9 +1,9 @@
 cask "docker-desktop" do
   arch arm: "arm64", intel: "amd64"
 
-  version "4.81.0,232925"
-  sha256 arm:   "a35a0b14fbf182fb2ef9f8e650ace9a8ebcc81ad4872d51bccc4496f5cdb0158",
-         intel: "03573c71f56842889c3b3002d51026ad9b8b454f2feed0d8af2c1eb90846077d"
+  version "4.88.1,237512"
+  sha256 arm:   "94102d4fe056bf3a4fde375d693aae96a429157dad0345af9853d7157d6bd5bd",
+         intel: "456792db209975c707bf9808ac766e3e50abf7b4dd628071359d9deec71746b8"
 
   on_intel do
     binary "#{appdir}/Docker.app/Contents/Resources/bin/com.docker.hyperkit",
@@ -46,22 +46,11 @@ cask "docker-desktop" do
   zsh_completion "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion"
   zsh_completion "#{appdir}/Docker.app/Contents/Resources/etc/docker.zsh-completion"
 
-  postflight do
-    kubectl_target = Pathname("/usr/local/bin/kubectl")
-
+  postflight_steps do
     # Only link if `kubernetes-cli` is not installed.
-    next if kubectl_target.exist?
-
-    system_command "/bin/ln", args: ["-sfn", appdir/"Docker.app/Contents/Resources/bin/kubectl", kubectl_target],
-                              sudo: !kubectl_target.dirname.writable?
-  end
-
-  uninstall_postflight do
-    kubectl_target = Pathname("/usr/local/bin/kubectl")
-
-    if kubectl_target.symlink? && kubectl_target.readlink == appdir/"Docker.app/Contents/Resources/bin/kubectl"
-      system_command "/bin/rm", args: [kubectl_target],
-                                sudo: !kubectl_target.dirname.writable?
+    unless_path_exists "/usr/local/bin/kubectl" do
+      symlink "{{appdir}}/Docker.app/Contents/Resources/bin/kubectl", "/usr/local/bin/kubectl",
+              remove_on_uninstall: true, sudo: :if_needed, overwrite: true
     end
   end
 
@@ -90,8 +79,11 @@ cask "docker-desktop" do
         "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.electron.dockerdesktop.sfl*",
         "~/Library/Application Support/com.bugsnag.Bugsnag/com.docker.docker",
         "~/Library/Application Support/Docker Desktop",
+        "~/Library/Application Support/docker-secrets-engine",
         "~/Library/Caches/com.docker.docker",
         "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.docker.docker",
+        "~/Library/Caches/Docker Desktop",
+        "~/Library/Caches/docker-secrets-engine",
         "~/Library/Caches/KSCrashReports/Docker",
         "~/Library/Containers/com.docker.docker",
         "~/Library/Containers/com.docker.helper",

@@ -1,6 +1,6 @@
 cask "dockflow" do
-  version "1.71"
-  sha256 "c3b82520c350d99f62c99c7c338562d3ec233a34435a9c35efceb81f269bd60a"
+  version "1.76"
+  sha256 "2f3c1bb89c6f06225368267ca6c45d3d0790e641e42de5418397a2e736cf2dc3"
 
   url "https://github.com/AppitStudio/dock-flow-updates/releases/download/v#{version}/DockFlow.dmg",
       verified: "github.com/AppitStudio/"
@@ -17,6 +17,8 @@ cask "dockflow" do
   depends_on macos: :ventura
 
   app "DockFlow.app"
+
+  uninstall quit: "com.appit.DockFlow"
 
   zap trash: [
     "~/Library/Application Support/DockFlow",

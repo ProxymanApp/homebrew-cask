@@ -1,9 +1,9 @@
 cask "baidunetdisk" do
   arch arm: "_arm64", intel: "_x64"
 
-  version "8.6.0"
-  sha256 arm:   "c5f576aa1ea73e7fcc7ff7df09af887a677c7c22fb53618a46b222dbc1b70041",
-         intel: "835c725d8e61fb71e584d764419c0b4fdd15fa6a80c4358a4348434214ed1d29"
+  version "8.7.3"
+  sha256 arm:   "567e1c707f52cb56978766a5573e69365679e703fb30a3baae75413d771f8261",
+         intel: "a24b2cea66040e49627b1bbcbfa87a1aba69233f624a27e577fd16005a41084f"
 
   url "https://pkg-ant.baidu.com/issue/netdisk/MACguanjia/#{version}/BaiduNetdisk_mac_#{version}#{arch}.dmg"
   name "Baidu NetDisk"
@@ -20,6 +20,8 @@ cask "baidunetdisk" do
   depends_on :macos
 
   app "BaiduNetdisk_mac.app"
+
+  uninstall launchctl: "netdisk_service"
 
   zap trash: [
         "~/Library/Application Scripts/com.baidu.BaiduNetdisk-mac.FinderSync",

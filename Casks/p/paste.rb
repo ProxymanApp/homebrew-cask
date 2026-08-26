@@ -1,6 +1,6 @@
 cask "paste" do
-  version "6.6.3"
-  sha256 "73845f31f49a88687ea86af3ec05d11ad3432ac0161aa54b22dc5f374940afcb"
+  version "6.6.9"
+  sha256 "d1b50b6a864a533795a68d9450a753c47d1cf6255e29affa9785e10b88f2f58f"
 
   url "https://downloads.pasteapp.io/dist/stable/Paste-#{version}.zip"
   name "Paste"
@@ -20,6 +20,7 @@ cask "paste" do
   zap trash: [
     "~/Library/Application Support/com.wiheads.paste-direct",
     "~/Library/Caches/com.wiheads.paste-direct",
+    "~/Library/Group Containers/group.com.wiheads.paste",
     "~/Library/HTTPStorages/com.wiheads.paste-direct",
     "~/Library/Preferences/com.wiheads.paste-direct.plist",
   ]

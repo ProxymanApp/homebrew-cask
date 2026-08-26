@@ -2,9 +2,9 @@ cask "djstudio@next" do
   arch arm: "-arm64"
   livecheck_arch = on_arch_conditional arm: "-apple"
 
-  version "4.2.6-beta.4"
-  sha256 arm:   "ef65909c48ca6be7194c0d6ced230e291cc0afb4f4facbf31c163c85b17a4670",
-         intel: "f7f456b5f5a8d062b53e933e9f26680046b757949482b31aefbfbcce18e4afb9"
+  version "4.2.12-beta.1"
+  sha256 arm:   "2c28237503e484568e84e61db8dcfd6ade9c308307985bfb2729525cfe3b96f0",
+         intel: "e066b3a1bd451154e9c1982b6f53b8775a0c12e464f07f002566aae56abbf20a"
 
   url "https://download.next.dj.studio/DJ.Studio%20Next-#{version}#{arch}.dmg"
   name "DJ.Studio Next"
@@ -23,9 +23,11 @@ cask "djstudio@next" do
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/dj.studio.app.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/dj.studio.next.app.sfl*",
     "~/Library/Application Support/DJ.Studio",
     "~/Library/Application Support/dj.studio.app",
     "~/Library/Preferences/dj.studio.app.plist",
+    "~/Library/Preferences/dj.studio.next.app.plist",
     "~/Library/Saved Application State/dj.studio.app.savedState",
   ]
 end

@@ -42,8 +42,8 @@ cask "teamviewer" do
     pkg "TeamViewer.pkg"
   end
   on_ventura :or_newer do
-    version "15.79.4"
-    sha256 "beff41a4941da37479bc8c7b6fed0e8a4fee08eb7773f1c868f7af9e063f16ab"
+    version "15.81.5"
+    sha256 "17bd3fd5f5172451685787ff8292e88178ac132c0d58a0c8064bb32ea201bb92"
 
     livecheck do
       url "https://download.teamviewer.com/download/update/macupdates.xml?id=0&lang=en&version=#{version}&os=macos&osversion=13.7&type=1&channel=1"
@@ -62,16 +62,19 @@ cask "teamviewer" do
   conflicts_with cask: "teamviewer-host"
   depends_on :macos
 
-  postflight do
+  postflight_steps do
     # postinstall launches the app
-    retries ||= 3
-    ohai "The TeamViewer package postinstall script launches the TeamViewer app" if retries >= 3
-    ohai "Attempting to close the TeamViewer app to avoid unwanted user intervention" if retries >= 3
-    return unless system_command "/usr/bin/pkill", args: ["-f", "/Applications/TeamViewer.app"]
-  rescue RuntimeError
-    sleep 1
-    retry unless (retries -= 1).zero?
-    opoo "Unable to forcibly close TeamViewer"
+    terminate_process(
+      "/Applications/TeamViewer.app",
+      match:           :full,
+      attempts:        3,
+      must_succeed:    false,
+      notices:         [
+        "The TeamViewer package postinstall script launches the TeamViewer app",
+        "Attempting to close the TeamViewer app to avoid unwanted user intervention",
+      ],
+      failure_message: "Unable to forcibly close TeamViewer",
+    )
   end
 
   uninstall launchctl: [
@@ -101,6 +104,7 @@ cask "teamviewer" do
             ]
 
   zap trash: [
+    "/Library/Application Support/TeamViewer",
     "~/Library/Application Support/TeamViewer",
     "~/Library/Caches/com.teamviewer.TeamViewer",
     "~/Library/Caches/TeamViewer",

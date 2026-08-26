@@ -1,9 +1,9 @@
 cask "android-studio-preview@beta" do
   arch arm: "mac_arm", intel: "mac"
 
-  version "2026.1.2.9,quail2-rc2"
-  sha256 arm:   "c7d85cddd981de7f0fbaf7a0f0877fbf57cb0a638b57312e2e5f0f4768226aca",
-         intel: "214d8655ed151803f37fc7aa82c255cdacfdf62e2d58a4cc7b40592c9f297c64"
+  version "2026.1.4.6,quail4-rc2"
+  sha256 arm:   "2aa0f42cd726332b435e669334812cbeb2516730422775749884e58419c56dfe",
+         intel: "4766384e812ac6343a9120fd4e8688ee3c6f8de783ad9a4fa8ef881ded33a395"
 
   url "https://edgedl.me.gvt1.com/android/studio/install/#{version.csv.first}/android-studio#{"-#{version.csv.second}" if version.csv.second}-#{arch}.dmg",
       verified: "edgedl.me.gvt1.com/android/studio/install/"
@@ -13,7 +13,7 @@ cask "android-studio-preview@beta" do
 
   livecheck do
     url :homepage
-    regex(%r{(?:Beta|RC).*href=.*?/v?(\d+(?:\.\d+)+)/android[._-]studio(?:[._-]([^"' >]+))?[._-]#{arch}\.dmg}im)
+    regex(%r{href=.*?/v?(\d+(?:\.\d+)+)/android[._-]studio(?:[._-]([^"' >]+))?[._-]#{arch}\.dmg[^>]*?beta}i)
     strategy :page_match do |page, regex|
       page.scan(regex).map do |match|
         match[1].present? ? "#{match[0]},#{match[1]}" : match[0]
@@ -26,6 +26,8 @@ cask "android-studio-preview@beta" do
 
   app "Android Studio.app", target: "Android Studio Preview Beta.app"
   binary "#{appdir}/Android Studio Preview Beta.app/Contents/MacOS/studio", target: "studio-beta"
+
+  uninstall quit: "com.google.android.studio"
 
   zap trash: [
         "~/.android",

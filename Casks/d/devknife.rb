@@ -1,6 +1,6 @@
 cask "devknife" do
-  version "1.15.4"
-  sha256 "dd382a46dabe24b72c504be7803056c9607cbdd30ea59e6e1d1fc2684edc5b6d"
+  version "1.17.0"
+  sha256 "d350b751933dfa86d78fd19809f938d1061fa9e3f83f783cab37b7c955e4bceb"
 
   url "https://files.solotuna.com/devknife/DevKnife-#{version}.dmg",
       verified: "files.solotuna.com/devknife/"
@@ -19,7 +19,7 @@ cask "devknife" do
   app "DevKnife.app"
 
   zap trash: [
-    "~/Library/Application Support/com.solotuna.devknife/",
+    "~/Library/Application Support/com.solotuna.devknife",
     "~/Library/Preferences/com.solotuna.devknife.plist",
   ]
 end

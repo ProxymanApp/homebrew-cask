@@ -1,9 +1,9 @@
 cask "intellij-idea@eap" do
   arch arm: "-aarch64"
 
-  version "2026.2,262.8665.81"
-  sha256 arm:   "5c3f418fa37ff77745db18e431275aca5ba0f3420b78d5327802a115569febe4",
-         intel: "096d4738530c5c5739a4dcb1a3dd544fc3da4aae41f7ee62b0f420e590528282"
+  version "2026.2.2,262.10315.19"
+  sha256 arm:   "ebf36075449523dfbc73cf14335b5fed87ac79b358ad3216b14e57ad6f2f6d84",
+         intel: "25c8a04b4a52ed3ef916e3faad5b769e74e3d2e592bb092e5f815a01190986e0"
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.csv.second}#{arch}.dmg"
   name "IntelliJ IDEA EAP"
@@ -33,14 +33,7 @@ cask "intellij-idea@eap" do
   app "IntelliJ IDEA.app"
   binary "#{appdir}/IntelliJ IDEA.app/Contents/MacOS/idea"
 
-  uninstall_postflight do
-    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
-      if File.readable?(path) &&
-         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
-        File.delete(path)
-      end
-    end
-  end
+  uninstall quit: "com.jetbrains.intellij"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/IntelliJIdea#{version.csv.first}",

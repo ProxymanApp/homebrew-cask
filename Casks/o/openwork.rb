@@ -1,23 +1,36 @@
 cask "openwork" do
+  arch arm: "arm64", intel: on_system_conditional(macos: "x64", linux: "x86_64")
   os macos: "mac", linux: "linux"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
+
+  version "0.18.35"
+  sha256 arm:          "806ead49d0dd7afe177c680b95c68c254ce717c1c4d382efa97633ea233c9cb3",
+         intel:        "e965195ecd8fa36eea7500fcca3503b6ddcd69b832974a817a5e89f4b8e522ca",
+         arm64_linux:  "eea9d28fef592ce30d41c5a740c523e9c75560632a86297dbc89b6c83540079f",
+         x86_64_linux: "1aa390a67bc38a56030c323dd4929a7ab8bc63d710081feb565711e9b7adffea"
 
   on_macos do
-    arch arm: "arm64", intel: "x64"
+    auto_updates true
+    depends_on macos: :monterey
+
+    app "OpenWork.app"
+
+    uninstall quit: "com.differentai.openwork"
+
+    zap trash: [
+      "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.differentai.openwork.sfl*",
+      "~/Library/Application Support/com.differentai.openwork",
+      "~/Library/Application Support/OpenWork",
+      "~/Library/Caches/OpenWork",
+      "~/Library/Preferences/com.differentai.openwork.plist",
+      "~/Library/Preferences/com.differentai.openwork.ShipIt.plist",
+    ]
   end
   on_linux do
-    arch arm: "arm64", intel: "x86_64"
+    app_image "openwork-linux-#{arch}-#{version}.AppImage", target: "OpenWork.AppImage"
   end
 
-  version "0.17.20"
-  sha256 arm:          "f49b639958b47945a3abcab49fb87a45c01510fe6a3ed505d152807fc36273e3",
-         intel:        "790d4e8e1baa881e3b5a18f6e0bfd15c8550fbc973b47631f1e245772c73a1ef",
-         arm64_linux:  "aa8822b657a8c26118b81968ecb0243284093bf90cff77bbd9e353a7ba13765f",
-         x86_64_linux: "4251a9d415b5f696474405a7b8642a89da6561c332938a1a1f22f57bf0bbf13d"
-
-  url_end = on_system_conditional linux: ".AppImage", macos: ".dmg"
-
-  url "https://github.com/different-ai/openwork/releases/download/v#{version}/openwork-#{os}-#{arch}-#{version}#{url_end}",
-      verified: "github.com/different-ai/openwork/"
+  url "https://github.com/different-ai/openwork/releases/download/v#{version}/openwork-#{os}-#{arch}-#{version}.#{url_end}"
   name "OpenWork"
   desc "Unofficial desktop GUI for OpenCode"
   homepage "https://openworklabs.com/"
@@ -25,22 +38,5 @@ cask "openwork" do
   livecheck do
     url :url
     strategy :github_latest
-  end
-
-  on_macos do
-    auto_updates true
-    depends_on macos: :big_sur
-
-    app "OpenWork.app"
-
-    zap trash: [
-      "~/Library/Application Support/OpenWork",
-      "~/Library/Caches/OpenWork",
-      "~/Library/Preferences/com.differentai.openwork.plist",
-    ]
-  end
-
-  on_linux do
-    app_image "openwork-linux-#{arch}-#{version}.AppImage", target: "OpenWork.AppImage"
   end
 end

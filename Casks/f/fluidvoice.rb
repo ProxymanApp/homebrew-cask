@@ -1,6 +1,6 @@
 cask "fluidvoice" do
-  version "1.6.2"
-  sha256 "85b59903ec19694e11d75d4aacb558c945ce3664062f7f75f8cb3ccf706b1bf3"
+  version "1.6.9"
+  sha256 "d8fb7861d479748bb9905b34e058bc0b106efb3c1767b397f9b2cb604a9357a7"
 
   url "https://github.com/altic-dev/FluidVoice/releases/download/v#{version}/Fluid-oss-#{version}.dmg",
       verified: "github.com/altic-dev/FluidVoice/"
@@ -17,6 +17,8 @@ cask "fluidvoice" do
   depends_on macos: :sequoia
 
   app "FluidVoice.app"
+
+  uninstall quit: "com.FluidApp.app"
 
   zap trash: [
     "~/Library/Application Support/FluidAudio",

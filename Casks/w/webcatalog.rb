@@ -1,6 +1,6 @@
 cask "webcatalog" do
-  version "77.1.0"
-  sha256 "a028927cb33845963412351c1356fd4bfaa448c59ec78669457e57770a1128e9"
+  version "77.10.0"
+  sha256 "7d39085535a1af227b74e429253e101617a4146f1e0905810dc06402c07a1c44"
 
   url "https://cdn-2.webcatalog.io/webcatalog/WebCatalog-#{version}-universal.dmg"
   name "WebCatalog"
@@ -18,6 +18,7 @@ cask "webcatalog" do
   app "WebCatalog.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.webcatalog.jordan.sfl*",
     "~/Library/Application Support/WebCatalog",
     "~/Library/Caches/com.webcatalog.jordan",
     "~/Library/Caches/com.webcatalog.jordan.ShipIt",

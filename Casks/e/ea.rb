@@ -1,5 +1,5 @@
 cask "ea" do
-  version "13.743.0.6256"
+  version "13.778.0.6291"
   sha256 :no_check
 
   url "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EA%20app.dmg",
@@ -19,6 +19,9 @@ cask "ea" do
   depends_on :macos
 
   app "EA app.app"
+
+  uninstall launchctl: "com.ea.app.backgroundAgent",
+            quit:      "com.ea.mac.eaapp"
 
   zap delete: [
         "/Library/Application Support/Electronic Arts",

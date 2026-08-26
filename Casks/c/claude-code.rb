@@ -2,11 +2,11 @@ cask "claude-code" do
   arch arm: "arm64", intel: "x64"
   os macos: "darwin", linux: "linux"
 
-  version "2.1.197"
-  sha256 arm:          "8cc0c4d1e4eb1dca3b0cc92ab02ee3505de764e023f8c901761c167b72041fb8",
-         x86_64:       "5e8a57cc7a92377f0744fa4c79191cf93d4b26c79cb919b07a407511fed1be26",
-         arm64_linux:  "fb48473c467c27615ac799a754f4ef0b68c363e4596cefbb59c3815d51a0cc8a",
-         x86_64_linux: "f54e69cbc89b2da61a415700af7ff52a147e862517d4f1b0eecf768448cf7f83"
+  version "2.1.231"
+  sha256 arm:          "ba790279cab6ef77b713864d4bf5f764fcea87d3a3eb7591a41f741e45212b5c",
+         intel:        "7c7c6179f55c985409af4c31603d19b9b64af4759d016f86b99bfbdb29042a90",
+         arm64_linux:  "4ee7c484b11dece6521aa2173a19ea913428c1c78599186d62559d2d2aef4e32",
+         x86_64_linux: "47a01daebf794f6c86c13d1875ad6e5be0627029ad8600731161f24018ecde5b"
 
   url "https://downloads.claude.ai/claude-code-releases/#{version}/#{os}-#{arch}/claude",
       verified: "downloads.claude.ai/claude-code-releases/"
@@ -18,6 +18,8 @@ cask "claude-code" do
     url "https://downloads.claude.ai/claude-code-releases/stable"
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
+
+  conflicts_with cask: "claude-code@latest"
 
   binary "claude"
 

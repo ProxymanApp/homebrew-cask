@@ -1,6 +1,6 @@
 cask "usmart-trade" do
-  version "4.6.6,20260630_144807,72ef48f9-723a-43c2-bff6-dd28fe1af30c,2026-06-30"
-  sha256 "82a319a4c39dd26e4628b6ddb885eb2fc57c6de335549690b4ac0aa0882e3f1a"
+  version "4.6.7,20260804_161626,a20805e1-7a1e-45e7-8480-cb1a272354d0,2026-08-04"
+  sha256 "5cc1e7004c4f4fae55d8028368a5b457207c7a0f0173ecf4c15a870e086b91f1"
 
   url "https://hk-static.usmartglobal.com/admin/app-version-file/#{version.csv.fourth}/#{version.csv.third}/usmart_macapp_#{version.csv.first}_#{version.csv.second}.dmg"
   name "uSMART Trade"
@@ -26,6 +26,7 @@ cask "usmart-trade" do
   app "uSMART Trade.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.usmart.mac.test.sfl*",
     "~/Library/Application Support/uSmart",
     "~/Library/Preferences/com.usmart.mac.test.plist",
     "~/Library/Saved Application State/com.usmart.mac.test.savedState",

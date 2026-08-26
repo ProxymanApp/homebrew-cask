@@ -1,6 +1,6 @@
 cask "chatgpt-atlas" do
-  version "1.2026.126.0,20260529183006000"
-  sha256 "3f8fe1e8fc850900848e6d9234c8062a5c2b075420460ed18e50269052f5af88"
+  version "1.2026.189.1,20260724200710000"
+  sha256 "894b60a1276c65dd220984db647963e6245e06e2211fb3c61b944f6e1a013435"
 
   url "https://persistent.oaistatic.com/atlas/public/ChatGPT_Atlas_Desktop_public_#{version.csv.first}_#{version.csv.second}.dmg",
       verified: "persistent.oaistatic.com/atlas/public/"
@@ -23,7 +23,8 @@ cask "chatgpt-atlas" do
 
   app "ChatGPT Atlas.app"
 
-  uninstall quit: "com.openai.atlas"
+  uninstall launchctl: "com.openai.atlas.update-helper",
+            quit:      "com.openai.atlas"
 
   zap trash: [
     "~/Library/Application Support/com.openai.atlas",
@@ -32,6 +33,7 @@ cask "chatgpt-atlas" do
     "~/Library/Caches/com.openai.atlas",
     "~/Library/HTTPStorages/com.openai.atlas",
     "~/Library/HTTPStorages/com.openai.atlas.binarycookies",
+    "~/Library/LaunchAgents/com.openai.atlas.update-helper.plist",
     "~/Library/Logs/DiagnosticReports/ChatGPT Atlas (Service)*.ips",
     "~/Library/Preferences/com.openai.atlas.plist",
     "~/Library/Preferences/com.openai.atlas.web.plist",

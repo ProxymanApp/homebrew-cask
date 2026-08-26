@@ -1,9 +1,9 @@
 cask "renameclick" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.12.9"
-  sha256 arm:   "05ba8e7828197780c05076f887a7b89fe85e1cf77ccf0859755f3bbe715fa75a",
-         intel: "8c8307b3df77c2107e04fb94dc631592f8c738508b37afca76d7df2515c4f27a"
+  version "2.15.1"
+  sha256 arm:   "1558a612ffd68fe43204ab0c67fa2f32b3447aaaf42f4953870eb93b90835f50",
+         intel: "458a3640b3e8d25498b1a351d381fe8e7a2a6960d6d2f5ae51437f6e0a2c2c94"
 
   url "https://github.com/noemaVision/renameclick/releases/download/v#{version}/RenameClick-#{version}-#{arch}.dmg",
       verified: "github.com/noemaVision/renameclick/"
@@ -21,11 +21,15 @@ cask "renameclick" do
 
   app "RenameClick.app"
 
+  uninstall quit: "com.renameclick.app"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.renameclick.app.sfl*",
     "~/Library/Application Support/RenameClick",
     "~/Library/Caches/com.renameclick.app",
     "~/Library/Caches/com.renameclick.app.helper",
     "~/Library/HTTPStorages/com.renameclick.app",
+    "~/Library/Logs/RenameClick",
     "~/Library/Logs/renameclick.log",
     "~/Library/Preferences/com.renameclick.app.helper.plist",
     "~/Library/Preferences/com.renameclick.app.plist",

@@ -1,25 +1,20 @@
 cask "slack-cli" do
-  arch arm: "arm64", intel: "amd64"
+  arch arm: "arm64", intel: on_system_conditional(macos: "amd64", linux: "64-bit")
   os macos: "macOS", linux: "linux"
 
-  version "4.4.0"
+  version "4.6.0"
 
   on_macos do
-    url "https://downloads.slack-edge.com/slack-cli/slack_cli_#{version}_#{os}_#{arch}.tar.gz",
-        verified: "downloads.slack-edge.com/"
-    sha256 arm:   "dddb34342f400598348ace7f5c86f85afe5d99666084720f962669d12bc49d4f",
-           intel: "9246c3f1aed003eab700662ea78b58e5ae28f484dba7c2f1fafced2cb8595322"
+    sha256 arm:   "c1586ad5625a31d802abb31aa4b023bd12fe3c794221aaf17f6814aaa321a792",
+           intel: "057362f3e1e2753a410f4868ae832f7e715665a46ae0cdccc3c2b78b2faef7df"
   end
-
   on_linux do
-    sha256 "315f6d072e83fe681633761cae1e6b18c4b26faa16d1bf4d89b21e76ba3d3faa"
-
-    url "https://downloads.slack-edge.com/slack-cli/slack_cli_#{version}_#{os}_64-bit.tar.gz",
-        verified: "downloads.slack-edge.com/"
+    sha256 "2863e7721af346caef72be7dc3be2a520db7207de08a440d040a6ec1378baeca"
 
     depends_on arch: :x86_64
   end
 
+  url "https://downloads.slack-edge.com/slack-cli/slack_cli_#{version}_#{os}_#{arch}.tar.gz"
   name "Slack CLI"
   desc "CLI to create, run, and deploy Slack apps"
   homepage "https://docs.slack.dev/tools/slack-cli/"

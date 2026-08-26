@@ -1,9 +1,9 @@
 cask "8x8-work" do
   arch arm: "-arm64"
 
-  version "8.35.2-6"
-  sha256 arm:   "24be6f8e2b864f4ca7b9acd661e81a4171278d86b8105f8ada0cc3221b28e87b",
-         intel: "2630392a6d8e1efd5eec1540de3ae9be6b11694a333dec995719476113b3eff4"
+  version "8.36.2-3"
+  sha256 arm:   "2cf54acde15ac58740db4baf8a474b601707023816d3637a616df203092d24a1",
+         intel: "ae5da045ddf28cd9f99e459dcc18033f9bc055c9f8c35ede1b65f63671bb5e7e"
 
   url "https://work-desktop-assets.8x8.com/prod-publish/ga/work#{arch}-dmg-v#{version}.dmg"
   name "8x8_work"
@@ -11,13 +11,18 @@ cask "8x8-work" do
   homepage "https://docs.8x8.com/8x8WebHelp/8x8-work-for-desktop/Content/workd/about-the-app.htm"
 
   livecheck do
-    url "https://support-portal.8x8.com/helpcenter/docrenderservice/services/rest/documents/8bff4970-6fbf-4daf-842d-8ae9b533153d"
-    regex(/href=.*?work[._-]dmg[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
+    url "https://help.8x8.com/docs/download-8x8-work-for-desktop"
+    regex(/href=.*?work#{arch}[._-]dmg[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
   end
 
   depends_on macos: :monterey
 
   app "8x8 Work.app"
 
-  zap trash: "~/Library/Application Support/8x8 Work"
+  zap trash: [
+    "~/Library/Application Support/8x8 Work",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.electron.8x8---virtual-office.sfl*",
+    "~/Library/Logs/8x8 Work",
+    "~/Library/Preferences/com.electron.8x8---virtual-office.plist",
+  ]
 end

@@ -1,6 +1,6 @@
 cask "rustcast" do
-  version "0.8.3"
-  sha256 "fc131483af0af9d1cd80909f96da762f998122a6e961070999a3b7e43e238edc"
+  version "0.8.5"
+  sha256 "77ca6160adbfa38adcf8a2ae83e4484c95ce38ceb5b47d21fe45076029c12802"
 
   url "https://github.com/RustCastLabs/rustcast/releases/download/v#{version}/Rustcast-universal-macos.app.zip",
       verified: "github.com/RustCastLabs/rustcast/releases/download/"
@@ -14,7 +14,7 @@ cask "rustcast" do
   end
 
   auto_updates true
-  depends_on macos: :big_sur
+  depends_on macos: :ventura
 
   app "target/release/macos/Rustcast.app"
 

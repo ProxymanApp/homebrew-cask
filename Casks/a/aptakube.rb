@@ -1,6 +1,6 @@
 cask "aptakube" do
-  version "1.18.4"
-  sha256 "2730467ccba9b01062f9f906c6e6bdd8f973126779d94f1abd99b5f5f7f3094d"
+  version "1.19.2"
+  sha256 "8bf6ce89f151644905a4c8b1aaee376186cbe44bddde9c4c33d43acf9a907cdf"
 
   url "https://releases.aptakube.com/Aptakube_#{version}_universal.dmg"
   name "Aptakube"
@@ -23,5 +23,6 @@ cask "aptakube" do
     "~/Library/Application Support/com.aptakube.Aptakube",
     "~/Library/Caches/com.aptakube.Aptakube",
     "~/Library/Logs/com.aptakube.Aptakube",
+    "~/Library/WebKit/com.aptakube.Aptakube",
   ]
 end

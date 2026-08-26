@@ -1,6 +1,6 @@
 cask "rcmd" do
-  version "3.5.0b4"
-  sha256 "22e4ca4c94f327c06867ed532c8e27d3aa0899a94c422186ed0600d36c01c840"
+  version "3.5.5"
+  sha256 "bfb8ed4384ce7077081d4fe93e1c339fde52bdd12e3a2cf69a3b1273b17ffb8c"
 
   url "https://files.lowtechguys.com/releases/rcmd-#{version}.dmg"
   name "rcmd"
@@ -9,13 +9,16 @@ cask "rcmd" do
 
   livecheck do
     url "https://files.lowtechguys.com/rcmd/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
   depends_on macos: :ventura
 
   app "rcmd.app"
+  binary "#{appdir}/rcmd.app/Contents/SharedSupport/rcmdCLI", target: "rcmd"
 
   zap trash: [
     "~/.config/rcmd",

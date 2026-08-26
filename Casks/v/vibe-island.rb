@@ -1,6 +1,6 @@
 cask "vibe-island" do
-  version "1.0.40"
-  sha256 "10216384ae737f830e8686d80de7ce1dc15fa07ca8b93effd85e2cd4bbb83914"
+  version "1.0.46"
+  sha256 "979d6363781c45c5188287d5bb4a52f74d00d004029a519973047ee6d754eb81"
 
   url "https://dl.vibeisland.app/VibeIsland-#{version}.dmg"
   name "Vibe Island"
@@ -22,6 +22,7 @@ cask "vibe-island" do
   zap trash: [
     "~/.vibe-island",
     "~/Library/Caches/app.vibeisland.macos",
+    "~/Library/HTTPStorages/app.vibeisland.macos",
     "~/Library/Preferences/app.vibeisland.macos.plist",
   ]
 end

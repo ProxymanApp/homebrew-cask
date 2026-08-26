@@ -2,8 +2,8 @@ cask "miniconda" do
   arch arm: "arm64", intel: "x86_64"
 
   on_arm do
-    version "py314_26.5.3-1"
-    sha256 "0cb1e1d43810d3118f7b6cd0095aff48dbde8312a19cb8c44e9a79c38bb48be3"
+    version "py314_26.5.3-2"
+    sha256 "e830bee5b9c6ebfb67e9df924b259a0d43c451bd17b965f7aa84523b69f7c3eb"
 
     livecheck do
       url "https://repo.anaconda.com/miniconda/"
@@ -40,16 +40,16 @@ cask "miniconda" do
   }
   binary "#{caskroom_path}/base/condabin/conda"
 
-  postflight do
-    if Dir.exist? "#{HOMEBREW_TEMP}/#{token}-envs"
-      FileUtils.rm_r "#{caskroom_path}/base/envs"
-      FileUtils.mv "#{HOMEBREW_TEMP}/#{token}-envs", "#{caskroom_path}/base/envs"
+  postflight_steps do
+    if_path_exists "{{temp}}/{{token}}-envs" do
+      remove "base/envs", base: :caskroom_path, recursive: true
+      move "{{temp}}/{{token}}-envs", "base/envs", target_base: :caskroom_path
     end
   end
 
-  uninstall_preflight do
-    if Dir.exist? "#{caskroom_path}/base/envs"
-      FileUtils.mv "#{caskroom_path}/base/envs", "#{HOMEBREW_TEMP}/#{token}-envs"
+  uninstall_preflight_steps do
+    if_path_exists "{{caskroom_path}}/base/envs" do
+      move "base/envs", "{{temp}}/{{token}}-envs", source_base: :caskroom_path
     end
   end
 

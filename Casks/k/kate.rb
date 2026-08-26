@@ -1,14 +1,14 @@
 cask "kate" do
   arch arm: "arm64", intel: "x86_64"
 
-  sha256 arm:   "67daca26c5b55e6f2914c5fce605ae04e59657899f13e7f5f80c5afe27533fdf",
-         intel: "bf513b9c168b15f8810e413c60170d397768cc571bc776d33fae8e55d7e3550c"
+  sha256 arm:   "b3ac3b61a24ee4b0534b21d28b2723af2f2c151b243fe0861f765e0fba0df75f",
+         intel: "f522ac66245af71d05214242cdec250ae8c7246c9fd9beaa48f64cf22dcc3009"
 
   on_arm do
-    version "26.04,11990"
+    version "26.08,12232"
   end
   on_intel do
-    version "26.04,11990"
+    version "26.08,12232"
   end
 
   url "https://cdn.kde.org/ci-builds/utilities/kate/release-#{version.csv.first}/macos-#{arch}/kate-release_#{version.csv.first}-#{version.csv.second}-macos-clang-#{arch}.dmg",
@@ -40,15 +40,8 @@ cask "kate" do
   depends_on macos: :ventura
 
   app "kate.app"
-  shimscript = "#{staged_path}/kate.wrapper.sh"
-  binary shimscript, target: "kate"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/Kate.app/Contents/MacOS/kate' "$@"
-    EOS
-  end
+  command_wrapper "kate",
+                  executable: "#{appdir}/Kate.app/Contents/MacOS/kate"
 
   zap trash: [
     "~/Library/Application Support/kate",

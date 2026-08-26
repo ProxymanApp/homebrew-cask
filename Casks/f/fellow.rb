@@ -1,6 +1,6 @@
 cask "fellow" do
-  version "5.4.4"
-  sha256 "195310c9ea3eecfa3439b474ec514e55c553ef9cf0f14fee07123c9af795f2a5"
+  version "5.7.2"
+  sha256 "04536265c4ef322a2b9c4f32b682f4d3dbf837b43223b50426e51e5671421513"
 
   url "https://cdn.fellow.app/desktop/#{version}/darwin/stable/universal/Fellow-#{version}-universal.dmg"
   name "Fellow"

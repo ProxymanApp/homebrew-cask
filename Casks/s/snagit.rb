@@ -1,6 +1,6 @@
 cask "snagit" do
-  version "2026.2.0"
-  sha256 "a69f6de7c0caf7c354c0f63b5cf8b1bd6093520849dacc0f85e7a3c9bf410a1e"
+  version "2026.3.1"
+  sha256 "7d9f261246b4885cb89b489a989d15ddb0302be11ba3518290b893f52fb0ca92"
 
   url "https://download.techsmith.com/snagitmac/releases/#{version}/snagit.dmg"
   name "Snagit"
@@ -22,9 +22,15 @@ cask "snagit" do
 
   app "Snagit.app"
 
+  uninstall quit: "com.TechSmith.Snagit"
+
   zap trash: [
+    "~/Library/Application Scripts/7TQL462TU8.com.techsmith.snagit",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.techsmith.snagit.sfl*",
+    "~/Library/Application Support/Snagit",
     "~/Library/Caches/com.TechSmith.Snagit*",
     "~/Library/Group Containers/*.com.techsmith.snagit",
+    "~/Library/HTTPStorages/com.TechSmith.Snagit*",
     "~/Library/Preferences/com.TechSmith.Snagit*.plist",
     "~/Library/Preferences/com.techsmith.snagit.capturehelper*.plist",
     "~/Library/Saved Application State/com.TechSmith.Snagit*.savedState",

@@ -1,9 +1,9 @@
 cask "folo" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.10.0"
-  sha256 arm:   "60aa2eb57e3f868da8349f31f674e32a44e21069f34575711a222ccaae430ea1",
-         intel: "dc03752b26e096939d36c9fd353db220d62cd24416a61b38657b40d2d71a0d0f"
+  version "1.12.0"
+  sha256 arm:   "6fa851d93ae151e07fa28a83ffdcf60d9da95bfb2bbe96766fb2211a731a8c27",
+         intel: "59504f3de6175cd264580b9cc8285dafffe61063df06c6efe3754285ba906dc0"
 
   url "https://github.com/RSSNext/Folo/releases/download/desktop%2Fv#{version}/Folo-#{version}-macos-#{arch}.dmg",
       verified: "github.com/RSSNext/Folo/"

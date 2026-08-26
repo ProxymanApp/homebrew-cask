@@ -1,8 +1,8 @@
 cask "lumide" do
-  version "0.15.0"
-  sha256 "39e77b253d4711d288f4cdc3e27157fa190ceae43a6c8e4763d9fb2c59b72fab"
+  version "0.20.0"
+  sha256 "44b1e435203140723355b9758614c2e7d3eb3f2bc3df3167fafc3b3117349402"
 
-  url "https://github.com/SoFluffyOS/lumide/releases/download/#{version}/Lumide_macOS.dmg",
+  url "https://github.com/SoFluffyOS/lumide/releases/download/#{version}/Lumide-macOS-#{version}.dmg",
       verified: "github.com/SoFluffyOS/lumide/"
   name "Lumide"
   desc "Agent-native code editor"
@@ -11,6 +11,8 @@ cask "lumide" do
   depends_on macos: :catalina
 
   app "Lumide.app"
+
+  uninstall quit: "io.sofluffy.lumide"
 
   zap trash: [
     "~/Library/Application Support/io.sofluffy.lumide",

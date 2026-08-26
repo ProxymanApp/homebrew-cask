@@ -1,6 +1,6 @@
 cask "vcamapp" do
-  version "0.13.3"
-  sha256 "62afb27f3c7c7968c5f9069cba841cdbd9292e1020c433ebdc4a0109dd5b78c6"
+  version "0.15.1"
+  sha256 "ca734bf53df0e2dca99acefacf17ae23efc5b4e27be5bccd516df58a870222c3"
 
   url "https://github.com/vcamapp/app/releases/download/#{version}/VCam.#{version}.dmg",
       verified: "github.com/vcamapp/app/"
@@ -8,7 +8,7 @@ cask "vcamapp" do
   desc "Face-tracking virtual avatar app"
   homepage "https://vcamapp.com/en"
 
-  depends_on macos: :sonoma
+  depends_on macos: :sequoia
 
   app "VCam.app"
 

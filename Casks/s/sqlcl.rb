@@ -1,6 +1,6 @@
 cask "sqlcl" do
-  version "26.2.0.181.2110"
-  sha256 "ce2382be7ecad2757676c96dfdbd63bb246dad4aafcbc04643e65ec4292964ae"
+  version "26.2.1.222.1617"
+  sha256 "ff810954993927836b3049eb7c6404d3da72eb539b2a3f725504f72973672fa3"
 
   url "https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-#{version}.zip"
   name "sqlcl"
@@ -12,12 +12,11 @@ cask "sqlcl" do
     regex(/href=.*?sqlcl[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  stage_only true
+  binary "sqlcl/bin/sql", target: "sqlcl"
 
   zap trash: "~/.sqlcl"
 
   caveats do
     depends_on_java "11+"
-    path_environment_variable "#{staged_path}/sqlcl/bin"
   end
 end

@@ -1,17 +1,15 @@
 cask "pixpin" do
-  version "3.2.3.1"
-  sha256 "e33db6e65fd967fa863dd4ca259366a7eab75e38a2c102584ce5373fff2614b4"
+  version "3.4.3.2"
+  sha256 "ab09b0502d16d31e697161c4e3080ea1561e887e7eaeea0e66032acdd541b6d2"
 
-  url "https://download.pixpin.cn/PixPin_cn_zh-cn_#{version}_uni.dmg"
+  url "https://down.pixpin.cn/PixPin_mac_#{version}_uni.dmg"
   name "PixPin"
   desc "Screenshot tool"
   homepage "https://pixpin.cn/"
 
   livecheck do
-    url "https://api.viewdepth.cn/app_info?app_id=pixpin&update_type=0&sys=mac&ver=0.0.0"
-    strategy :json do |json|
-      json.dig("ver_info", "version")
-    end
+    url "https://pixpin.cn/download/"
+    regex(/href=.*?PixPin(?:[._-]mac)?[._-]v?(\d+(?:\.\d+)+)(?:[._-]uni)?\.dmg/i)
   end
 
   auto_updates true

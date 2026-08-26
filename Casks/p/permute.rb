@@ -1,7 +1,7 @@
 cask "permute" do
   on_arm do
-    version "4.0.5,4137"
-    sha256 "c2f2ed63d372a1dbc6dbe3041b18c6fd88a4a92a6452187cf9b81a0156fa214f"
+    version "4.0.8,4155"
+    sha256 "833e4946c614a7bdedbff1ed205194b7238652ad14ee33c1b76a6e44603b1775"
 
     depends_on macos: :tahoe
   end

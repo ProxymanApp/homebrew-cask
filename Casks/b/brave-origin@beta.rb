@@ -2,9 +2,15 @@ cask "brave-origin@beta" do
   arch arm: "arm64", intel: "x64"
   folder_arch = on_arch_conditional arm: "-arm64"
 
-  version "1.93.116.0"
-  sha256 arm:   "c1f1bb186243cb08ffaf43865118cd6ec780d350e4fa3917c45780671a435710",
-         intel: "014a7968303bf4f6a8aa7874a625ebbbb7b3cb579f9ea0ddd8824bc61a5fd4c9"
+  sha256 arm:   "b09120da91489cda2c91cb5a86c0c402beaf4e563bdcfbf8d9fab9650a0cb58c",
+         intel: "0eaa252e2a622893d7236e3a6099dcce2a38b6d302676b079c863b0b9de57432"
+
+  on_arm do
+    version "1.95.87.0"
+  end
+  on_intel do
+    version "1.94.109.0"
+  end
 
   url "https://updates-cdn.bravesoftware.com/sparkle/Brave-Origin/beta#{folder_arch}/#{version.major_minor_patch.sub(".", "")}/Brave-Origin-Beta-#{arch}.dmg",
       verified: "updates-cdn.bravesoftware.com/sparkle/Brave-Origin/"
@@ -18,7 +24,7 @@ cask "brave-origin@beta" do
   end
 
   auto_updates true
-  depends_on macos: :monterey
+  depends_on macos: :ventura
 
   app "Brave Origin Beta.app"
 

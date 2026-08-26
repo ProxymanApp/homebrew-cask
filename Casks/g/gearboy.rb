@@ -1,9 +1,9 @@
 cask "gearboy" do
   arch arm: "arm64", intel: "intel"
 
-  version "3.8.9"
-  sha256 arm:   "8915764f353e3c9cacefa357a76f633795ed5aef20248afff00cd7c20ff79e18",
-         intel: "d55d3f01dd90417f81db4ff0e4dce33d3d10f97b0613c47d7fe7f030917b484a"
+  version "3.8.13"
+  sha256 arm:   "aaf675b85cee385e4247dfefef91996b171793db785b2a5b6664c4d722aeebc1",
+         intel: "97a4902e4812357048d66cdebcbb1a3dc56ab974e5c2429cfc560ae064aeb2ec"
 
   url "https://github.com/drhelius/Gearboy/releases/download/#{version}/Gearboy-#{version}-desktop-macos-#{arch}.zip"
   name "Gearboy"
@@ -19,6 +19,8 @@ cask "gearboy" do
   container nested: "Gearboy.app.zip"
 
   app "Gearboy.app"
+
+  uninstall quit: "com.drhelius.Gearboy"
 
   zap trash: "~/Library/Saved Application State/me.ignaciosanchez.Gearboy.savedState"
 end

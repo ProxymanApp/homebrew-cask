@@ -1,8 +1,11 @@
 cask "thebrain" do
-  version "14.0.116.0"
-  sha256 "29bbc4942c851c4dc7720ef3a481d970ef52efa157ba450842494a44dde92b60"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://updater.thebrain.com/files/TheBrain#{version}.dmg"
+  version "15.0.612"
+  sha256 arm:   "9672b36ded3147504b333dc63ad1feb780d88f1980828bdf2e1530d6a11f4a70",
+         intel: "23c39119725a8beb35001b86338dec29f242d226fa1f9f5b68e094d7ff73205e"
+
+  url "https://updater.thebrain.com/files/TheBrain-#{version}-#{arch}.dmg"
   name "TheBrain"
   desc "Mind mapping and personal knowledge base software"
   homepage "https://www.thebrain.com/"
@@ -10,6 +13,7 @@ cask "thebrain" do
   livecheck do
     url "https://salesapi.thebrain.com/?a=doDirectDownload&id=#{version.major}000"
     strategy :header_match
+    regex(%r{TheBrain[._-]v?(\d+(?:\.\d+)+)-[^/]+\.}i)
   end
 
   depends_on :macos

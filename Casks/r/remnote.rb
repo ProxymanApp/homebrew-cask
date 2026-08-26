@@ -2,9 +2,9 @@ cask "remnote" do
   arch arm: "-arm64"
   livecheck_arch = on_arch_conditional arm: "_m1"
 
-  version "1.26.30"
-  sha256 arm:   "c550e019047aff289cf9ce75b74fa96aa6dd4ed1120b0272b36567b6e78fac35",
-         intel: "451d6130edeed15684074625bea37ccd6b868055d01212a79c397f9c96af3331"
+  version "1.28.0"
+  sha256 arm:   "780701321011f383d957b599f69307f8f9138942627efab71d851c03413c806d",
+         intel: "e3226bc1ad6cdeea8945e6e77eeef939c1ca68e71d1b26cd4a579974bc876e0d"
 
   url "https://download2.remnote.io/remnote-desktop2/RemNote-#{version}#{arch}-mac.zip",
       verified: "download2.remnote.io/"
@@ -24,7 +24,9 @@ cask "remnote" do
   app "RemNote.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.remnote.sfl*",
     "~/Library/Application Support/RemNote",
+    "~/Library/Logs/RemNote",
     "~/Library/Preferences/io.remnote.plist",
     "~/Library/Saved Application State/io.remnote.savedState",
   ]

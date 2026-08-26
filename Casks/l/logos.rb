@@ -1,9 +1,9 @@
 cask "logos" do
   arch arm: "-arm"
 
-  version "51.1.0.0003"
-  sha256 arm:   "5cffaa532fc7dea75b0457683dd188559782e9824b14d11fa4162ccafd7928bf",
-         intel: "886f956134285a0f65bf81d0e795dc317b737475a5e85fc22690daba2f31e31e"
+  version "53.0.0.0156"
+  sha256 arm:   "2d74b8e79c82f9715384c842fe9b0eaa0a7fd699ba9a4dfce26dee879cbd1152",
+         intel: "059969cc7bb5f78341c37e360f692994cb6ee174411da0f91eebf644791796b1"
 
   url "https://downloads.logoscdn.com/LBS10/Installer/#{version}/LogosMac#{arch}.dmg",
       verified: "downloads.logoscdn.com/"
@@ -24,9 +24,10 @@ cask "logos" do
   app "Logos.app"
 
   uninstall launchctl: "com.logos.LogosIndexer",
-            quit:      "com.logos.Logos"
+            quit:      ["com.logos.desktop.logos", "com.logos.desktop.logossplashscreen", "com.logos.Logos"]
 
   zap trash: [
+    "~/Library/Application Support/Logos4",
     "~/Library/LaunchAgents/com.logos.desktop.logosindexer.plist",
     "~/Library/Preferences/com.logos.*.plist",
   ]

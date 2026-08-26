@@ -1,9 +1,9 @@
 cask "figma" do
   arch arm: "mac-arm", intel: "mac"
 
-  version "126.6.14"
-  sha256 arm:   "366b91ab765a6913d5ae4bdb9c2f39abaa3e5a19e75f2d6815bd3b288eac243f",
-         intel: "fa2909e4f948543c25adf67e7a299c02e9622de4c9192dfc1ef834226611c20a"
+  version "126.7.10"
+  sha256 arm:   "8533538d83d055c0cd1961260105606012a9dac8e2d4eb104bb631f9e65c728f",
+         intel: "e0f75a12c27c4e01b801d4f03d72aba5be1ab8acdee0833113c7af26bc3c55f1"
 
   url "https://desktop.figma.com/#{arch}/Figma-#{version}.zip"
   name "Figma"
@@ -22,11 +22,15 @@ cask "figma" do
 
   app "Figma.app"
 
+  uninstall quit: "com.figma.agent"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.figma.desktop.sfl*",
     "~/Library/Application Support/Figma",
     "~/Library/Application Support/figma-desktop",
     "~/Library/Caches/com.figma.agent",
     "~/Library/Caches/com.figma.Desktop",
+    "~/Library/HTTPStorages/com.figma.agent",
     "~/Library/Preferences/com.figma.Desktop.plist",
     "~/Library/Saved Application State/com.figma.Desktop.savedState",
   ]

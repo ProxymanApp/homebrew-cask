@@ -1,6 +1,6 @@
 cask "smoothcapture" do
-  version "1.2.51"
-  sha256 "ac063c116098f364843a04aa8f9daa910bb4e38c962db195669ddd8f0f0e85d7"
+  version "1.2.58"
+  sha256 "fb28cdb1f0a1594c5b76620396e0d276957fcb35396c2a7c0b93171e4159f0c9"
 
   url "https://download.smoothcapture.app/SmoothCapture-#{version}.dmg"
   name "Smooth Capture"

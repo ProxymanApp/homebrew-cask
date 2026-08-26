@@ -24,8 +24,8 @@ cask "omnioutliner" do
     end
   end
   on_sequoia :or_newer do
-    version "6.2"
-    sha256 "69bd2ffeb7f611cb893c5c3f1787ce7ae5037c93520715cb875dba913799f337"
+    version "6.2.1"
+    sha256 "7c1ffddfc9cf0a1124c966f3c2351bae68872a10dd432588683607ed0c6b97d0"
 
     url "https://downloads.omnigroup.com/software/macOS/15/OmniOutliner-#{version}.dmg"
 
@@ -47,6 +47,7 @@ cask "omnioutliner" do
   zap trash: [
     "~/Library/Application Scripts/com.omnigroup.OmniOutliner#{version.major}",
     "~/Library/Application Scripts/com.omnigroup.OmniOutliner#{version.major}.Thumbnails",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.omnigroup.omnioutliner*.sfl*",
     "~/Library/Containers/com.omnigroup.OmniOutliner#{version.major}",
     "~/Library/Containers/com.omnigroup.OmniOutliner#{version.major}.Thumbnails",
   ]

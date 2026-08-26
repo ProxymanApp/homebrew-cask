@@ -1,6 +1,6 @@
 cask "soundanchor" do
-  version "1.8.1"
-  sha256 "c91ff3f761e2d50648f8a1327c115cc2790f604cf789156faf5834619c47a64b"
+  version "1.8.3"
+  sha256 "6647785c1ddf776f40408f0b824425d5706d200acb1bc8cd6cc68f44e4f3b74f"
 
   url "https://cdn.kopiro.me/soundanchor/soundanchor-#{version}.dmg"
   name "SoundAnchor"
@@ -15,7 +15,9 @@ cask "soundanchor" do
   auto_updates true
   depends_on macos: :monterey
 
-  app "SoundAnchor.app"
+  app "soundanchor.app", target: "SoundAnchor.app"
+
+  uninstall quit: "me.kopiro.soundanchor"
 
   # No zap stanza required
 end

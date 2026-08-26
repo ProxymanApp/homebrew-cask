@@ -1,6 +1,6 @@
 cask "quo" do
-  version "5.5.5"
-  sha256 "09b7579679b957a684bc12d0468725e78edac768a61e317f656f40dd066abbe5"
+  version "5.6.11"
+  sha256 "4f8910884fc74a42c6fb33f820c666e66b6c5b44ec9adb4005dbc69aa25821c9"
 
   url "https://download.quo.com/Quo-#{version}-universal.dmg"
   name "Quo"
@@ -12,7 +12,7 @@ cask "quo" do
     strategy :electron_builder
   end
 
-  depends_on macos: :ventura
+  depends_on macos: :monterey
 
   app "Quo.app"
 

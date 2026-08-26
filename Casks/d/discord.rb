@@ -7,13 +7,23 @@ cask "discord" do
       skip "Legacy version"
     end
   end
-  on_big_sur :or_newer do
-    version "0.0.398"
-    sha256 "2f52b403801ed8c663406afa0ead8a07bb3588a9655ba9022bb24c574c5f610e"
+  on_big_sur do
+    version "0.0.402"
+    sha256 "568293a1f65fab2244b5acdac282b88b6f00efd87defd76cc77185d1b9caba64"
 
     livecheck do
-      url "https://discord.com/api/download/stable?platform=osx"
-      strategy :header_match
+      skip "Legacy version"
+    end
+  end
+  on_monterey :or_newer do
+    version "0.0.409"
+    sha256 "caf8473d7f702fd67e09ccda55a05934675a5f464ae9bfca6d4b534f6d6cc511"
+
+    livecheck do
+      url "https://updates.discord.com/distributions/app/manifests/latest?channel=stable&platform=osx&arch=x64"
+      strategy :json do |json|
+        json.dig("full", "host_version")&.join(".")
+      end
     end
   end
 
@@ -28,11 +38,12 @@ cask "discord" do
 
   app "Discord.app"
 
-  uninstall quit: [
-    "com.hnc.Discord",
-    "com.hnc.Discord.helper.Plugin",
-    "com.hnc.Discord.helper.Renderer",
-  ]
+  uninstall launchctl: "com.discord.discord.ShipIt",
+            quit:      [
+              "com.hnc.Discord",
+              "com.hnc.Discord.helper.Plugin",
+              "com.hnc.Discord.helper.Renderer",
+            ]
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hnc.discord.sfl*",
@@ -43,6 +54,7 @@ cask "discord" do
     "~/Library/Cookies/com.hnc.Discord.binarycookies",
     "~/Library/HTTPStorages/com.hnc.Discord",
     "~/Library/HTTPStorages/com.hnc.Discord.binarycookies",
+    "~/Library/Preferences/ByHost/com.discord.discord.ShipIt.*.plist",
     "~/Library/Preferences/com.hnc.Discord.helper.plist",
     "~/Library/Preferences/com.hnc.Discord.plist",
     "~/Library/Saved Application State/com.hnc.Discord.savedState",

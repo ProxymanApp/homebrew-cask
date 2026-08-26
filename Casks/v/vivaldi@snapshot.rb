@@ -1,6 +1,6 @@
 cask "vivaldi@snapshot" do
-  version "8.1.4087.40"
-  sha256 "f8d0b944e4799233ad3b2ab9b6af2a1dc9128e4211e69ef2ec2e4b8dabb52f67"
+  version "8.2.4133.24"
+  sha256 "0e199135916f57cacfdcb6168567349603b9e855acdb0ee9c1e1e8a106be854c"
 
   url "https://downloads.vivaldi.com/snapshot-auto/Vivaldi.#{version}.universal.tar.xz"
   name "Vivaldi Snapshot"
@@ -13,7 +13,7 @@ cask "vivaldi@snapshot" do
   end
 
   auto_updates true
-  depends_on macos: :monterey
+  depends_on macos: :ventura
 
   app "Vivaldi Snapshot.app"
 

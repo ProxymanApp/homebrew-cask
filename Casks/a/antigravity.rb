@@ -2,9 +2,9 @@ cask "antigravity" do
   arch arm: "arm", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "arm64", intel: "x64"
 
-  version "2.2.1,5287492581195776"
-  sha256 arm:   "cb1955fdaa58ff851bf2f75078c318b90304d0a643eecb836aeb8783e2e89b12",
-         intel: "a7540a2ce23397cdbba634c704bd0982a665643b5078797413a615e4f2b0b858"
+  version "2.10.0,4996573600546816"
+  sha256 arm:   "220e759763989b8f86c5a06454678b4b0a0ea528a7fb8960f8d45f7c7ac8909b",
+         intel: "42408fda921d352e0af1308d05ec55f4a9b7656ef643f4b942f52cd6eadb1b41"
 
   url "https://storage.googleapis.com/antigravity-public/antigravity-hub/#{version.csv.first}-#{version.csv.second}/darwin-#{arch}/Antigravity.dmg",
       verified: "storage.googleapis.com/antigravity-public/antigravity-hub/"
@@ -33,8 +33,8 @@ cask "antigravity" do
   uninstall quit: "com.google.antigravity"
 
   zap trash: [
-    "~/.antigravity/",
-    "~/.gemini/antigravity/",
+    "~/.antigravity",
+    "~/.gemini/antigravity",
     "~/Library/Application Support/Antigravity",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.antigravity.sfl*",
     "~/Library/Caches/com.google.antigravity",

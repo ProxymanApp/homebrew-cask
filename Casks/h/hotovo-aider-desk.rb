@@ -1,9 +1,9 @@
 cask "hotovo-aider-desk" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.73.0"
-  sha256 arm:   "a58e2568459c970cf903e8535febf908fe4048dc2ab72ed60ac8ab47585f9ca2",
-         intel: "56002ced378b84f95464afe7d46cff9122d9716b0e9740765aaac83869e269c8"
+  version "0.80.0"
+  sha256 arm:   "6171de7f79977b72d7bfb2b7855aee3b54d175261ad1d0e5b09456eaf2315060",
+         intel: "12fd6613acd38dbe852b4d29068010a033cd1e797962c49a10a052f812552e17"
 
   url "https://github.com/hotovo/aider-desk/releases/download/v#{version}/aider-desk-#{version}-macos-#{arch}.dmg"
   name "AiderDesk"
@@ -22,6 +22,7 @@ cask "hotovo-aider-desk" do
 
   zap trash: [
     "~/Library/Application Support/aider-desk",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hotovo.aider-desk.sfl*",
     "~/Library/Logs/aider-desk",
     "~/Library/Preferences/com.hotovo.aider-desk.plist",
     "~/Library/Saved Application State/com.hotovo.aider-desk.savedState",

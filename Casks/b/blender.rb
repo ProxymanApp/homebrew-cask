@@ -5,8 +5,8 @@ cask "blender" do
   # https://www.blender.org/download/lts/ when updating this cask, as we cannot
   # identify LTS versions using livecheck.
   on_arm do
-    version "5.1.2"
-    sha256 "f104ffee2ba6aee32328e5c203b7e4608d8a1745f7bbcf2766f3b9777e8fbe17"
+    version "5.2.1"
+    sha256 "6409e21de80994db5f4c4a34486b6fd43cea21085b912f7491c53e923acb65a3"
 
     # The upstream download page (https://www.blender.org/download/) cannot be
     # fetched due to Cloudflare protections, so we have to naively assume a
@@ -34,8 +34,8 @@ cask "blender" do
     end
   end
   on_intel do
-    version "4.5.11"
-    sha256 "d5b0e77ab3baf3cfdf8a80847b3b716ec7448ecd8e299564b7f5a934427224fc"
+    version "4.5.13"
+    sha256 "43caddd07d0917cb5bac288180e6bcb0374fac4fdc31cca9dc230a2e3dec752f"
 
     # Intel support is limited to version 4.5.x series.
     livecheck do
@@ -55,18 +55,11 @@ cask "blender" do
   depends_on macos: :big_sur
 
   app "Blender.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/blender.wrapper.sh"
-  binary shimscript, target: "blender"
+  command_wrapper "blender",
+                  executable: "#{appdir}/Blender.app/Contents/MacOS/Blender"
 
-  preflight do
-    # make __pycache__ directories writable, otherwise uninstall fails
-    FileUtils.chmod "u+w", Dir.glob("#{staged_path}/*.app/**/__pycache__")
-
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      '#{appdir}/Blender.app/Contents/MacOS/Blender' "$@"
-    EOS
+  preflight_steps do
+    set_permissions "*.app/**/__pycache__", "u+w", recursive: false
   end
 
   zap trash: [

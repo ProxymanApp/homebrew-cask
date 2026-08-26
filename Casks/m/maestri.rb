@@ -1,6 +1,6 @@
 cask "maestri" do
-  version "0.32.3"
-  sha256 "5619a73c0fda1a83c7831d991a7c4597afd389c238da98b7d1f304cd6374121f"
+  version "0.44.2"
+  sha256 "16bf7d9c9a1a7a4c33f3d21b94570c2234e59350f214441a0608dc5cc7e64b49"
 
   url "https://pub-84eb0b1f3fb3420bbe57a88de7443b71.r2.dev/downloads/Maestri-#{version}.zip",
       verified: "pub-84eb0b1f3fb3420bbe57a88de7443b71.r2.dev/downloads/"
@@ -14,14 +14,16 @@ cask "maestri" do
   end
 
   auto_updates true
-  depends_on macos: :tahoe
+  depends_on macos: :sequoia
 
   app "Maestri.app"
 
   zap trash: [
     "~/.maestri",
+    "~/Library/Application Support/CrashReporter/Maestri_*.plist",
     "~/Library/Caches/com.evercraftlabs.Maestro",
     "~/Library/HTTPStorages/com.evercraftlabs.Maestro",
+    "~/Library/Logs/DiagnosticReports/Maestri-*.ips",
     "~/Library/Preferences/com.evercraftlabs.Maestro.plist",
   ]
 end

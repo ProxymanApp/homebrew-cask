@@ -1,6 +1,6 @@
 cask "rstudio" do
-  version "2026.06.0,242"
-  sha256 "d5b269e6a7334a7e28f05777a14b83918636bdb5497e28aa00f666f2551f98ac"
+  version "2026.08.1,195"
+  sha256 "c786e1bc7d63d5c11ae30d1adebf2c5865652a76aa2acaeac4577c51e9323756"
 
   url "https://download1.rstudio.org/electron/macos/RStudio-#{version.csv.first}-#{version.csv.second}.dmg",
       verified: "download1.rstudio.org/electron/macos/"
@@ -23,6 +23,8 @@ cask "rstudio" do
   depends_on macos: :monterey
 
   app "RStudio.app"
+
+  uninstall quit: "com.rstudio.desktop"
 
   zap trash: "~/.rstudio-desktop"
 

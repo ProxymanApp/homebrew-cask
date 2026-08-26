@@ -1,6 +1,6 @@
 cask "paper-design" do
-  version "0.4.4,260706m7lwa680d"
-  sha256 "a3a495bac3acea863eeaecee830a1b306106b683f2ce844c4986ade056849ab1"
+  version "0.5.5,2608248vduqftg0"
+  sha256 "e07476fbab53f431b437375e5768db22a388b0e092559d4d582779a73c7dabc5"
 
   url "https://download.todesktop.com/2601167vjw8xe/Paper%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-arm64.dmg",
       verified: "download.todesktop.com/2601167vjw8xe/"
@@ -30,6 +30,7 @@ cask "paper-design" do
   uninstall quit: "com.todesktop.2601167vjw8xe"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.todesktop.2601167vjw8xe.sfl*",
     "~/Library/Application Support/Paper",
     "~/Library/Preferences/com.todesktop.2601167vjw8xe.plist",
   ]
